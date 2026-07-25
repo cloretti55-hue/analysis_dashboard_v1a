@@ -248,7 +248,8 @@
         padding: 14px 16px;
         color: var(--muted);
         font-size: 12px;
-        font-weight: 720;
+        font-weight: 400;
+        font-style: italic;
         line-height: 1.45;
       }
 
@@ -262,6 +263,16 @@
         color: var(--ink);
         font-size: 12px;
         text-transform: uppercase;
+        font-style: normal;
+        font-weight: 720;
+      }
+
+      .disclaimer-panel .method-note {
+        display: block;
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--line);
+        color: var(--muted);
       }
 
       .home-notes {
@@ -4691,8 +4702,7 @@
               { className: "panel" },
               React.createElement(Sp500ValuationContext, { data: sp500ValuationData, relativeData: valuationData })
             )
-          ),
-          React.createElement("p", { className: "data-note" }, FORWARD_PE_METHOD_NOTE)
+          )
         );
 
         const activeMag7Valuation = mag7ValuationData?.companies?.length ? mag7ValuationData : MAG7_VALUATION_FALLBACK;
@@ -5074,11 +5084,17 @@
         path.split(".").reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), object);
 
       function DataLabLineChart({ active }) {
-        const points = active?.performanceChart?.points || [];
-        const fixedIncomeBenchmarkKey = points.some((point) => typeof point.cash === "number") ? "cash" : "sp500";
+        const rawPoints = active?.performanceChart?.points || [];
+        const fixedIncomeBenchmarkKey = rawPoints.some((point) => typeof point.cash === "number") ? "cash" : "sp500";
         const benchmarkKey = active?.assetClass === "volatility" ? null : active?.assetClass === "fixed_income" ? fixedIncomeBenchmarkKey : "sp500";
         const benchmarkLabel = benchmarkKey ? (active?.assetClass === "fixed_income" && benchmarkKey === "cash" ? "Fed Funds" : "S&P 500") : "";
-        const hasBenchmark = benchmarkKey ? points.some((point) => typeof point[benchmarkKey] === "number") : false;
+        const hasBenchmark = benchmarkKey ? rawPoints.some((point) => typeof point[benchmarkKey] === "number") : false;
+        const points = rawPoints.filter((point) => {
+          const hasEtf = typeof point.etf === "number" && Number.isFinite(point.etf);
+          if (!hasEtf) return false;
+          if (!hasBenchmark) return true;
+          return typeof point[benchmarkKey] === "number" && Number.isFinite(point[benchmarkKey]);
+        });
         const values = points.flatMap((point) => [point.etf, hasBenchmark ? point[benchmarkKey] : null]).filter((value) => typeof value === "number" && Number.isFinite(value));
         const minValue = Math.floor(Math.min(...values, 95) / 5) * 5;
         const maxValue = Math.ceil(Math.max(...values, 105) / 5) * 5;
@@ -7333,10 +7349,11 @@
       const DATALAB_DISCLAIMER_EXTRA =
         "Retorno total aproximado via adjusted close; dados sujeitos a atraso e revisão.";
 
-      function Disclaimer({ full = false, dataLab = false }) {
+      function Disclaimer({ full = false, dataLab = false, methodNote = null }) {
         return React.createElement(
           "section",
           { className: "panel disclaimer-panel" },
+          methodNote ? React.createElement("span", { className: "method-note" }, methodNote) : null,
           full ? React.createElement("strong", null, "Disclaimer") : null,
           React.createElement("span", null, full ? FULL_DISCLAIMER : `${SHORT_DISCLAIMER}${dataLab ? ` ${DATALAB_DISCLAIMER_EXTRA}` : ""}`)
         );
@@ -7572,7 +7589,7 @@
                   React.createElement("p", null, selectedCopy.lead)
                 ),
                 React.createElement(MobileModuleContent, { activeModule: selectedModule, mode, setMode, theme, curveMeta, fedPolicy }),
-                React.createElement(Disclaimer, { dataLab: selectedModule === "dataLab" })
+                React.createElement(Disclaimer, { dataLab: selectedModule === "dataLab", methodNote: selectedModule === "equity" ? FORWARD_PE_METHOD_NOTE : null })
               )
             : React.createElement(
                 React.Fragment,
@@ -8173,7 +8190,7 @@
                   : activeModule === "dataLab"
                     ? React.createElement(DataLabModule)
                     : React.createElement(EtfsModule),
-          activeModule === "home" ? null : React.createElement(Disclaimer, { dataLab: activeModule === "dataLab" })
+          activeModule === "home" ? null : React.createElement(Disclaimer, { dataLab: activeModule === "dataLab", methodNote: activeModule === "equity" ? FORWARD_PE_METHOD_NOTE : null })
         );
       }
 

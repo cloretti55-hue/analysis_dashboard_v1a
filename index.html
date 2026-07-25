@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Arquitetura de Mercado | Yield Curves</title>
+    <title>Dashboard - Arquitetura</title>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <style>
@@ -242,6 +242,26 @@
         font-weight: 850;
         letter-spacing: 0;
         opacity: 0.68;
+      }
+
+      .disclaimer-panel {
+        padding: 14px 16px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 720;
+        line-height: 1.45;
+      }
+
+      .home-layout .disclaimer-panel {
+        max-width: 980px;
+      }
+
+      .disclaimer-panel strong {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--ink);
+        font-size: 12px;
+        text-transform: uppercase;
       }
 
       .home-notes {
@@ -864,6 +884,10 @@
         font-size: 11px;
         font-weight: 850;
         text-transform: uppercase;
+      }
+
+      .data-lab-metric span span {
+        display: block;
       }
 
       .data-lab-metric strong {
@@ -4249,6 +4273,9 @@
         return `US$ ${value.toFixed(0).replace(".", ",")}`;
       }
 
+      const FORWARD_PE_METHOD_NOTE =
+        "Forward P/E pode variar entre provedores por diferenças de data-base, universo, tratamento de lucros não recorrentes, ponderação e definição de consenso de EPS projetado.";
+
       function EquityPeChart({ valuationData }) {
         const activeItems = valuationData?.items?.length ? valuationData.items : EQUITY_PE;
         const maxPe = Math.max(...activeItems.map((item) => item.value));
@@ -4264,7 +4291,7 @@
         return React.createElement(
           "div",
           { className: "equity-pe-chart" },
-          React.createElement("h2", null, "Base A: Forward P/E por bloco"),
+          React.createElement("h2", null, "Leitura Relativa: Segmentos de Mercado"),
           React.createElement(
             "div",
             { className: "pe-bars" },
@@ -4324,14 +4351,14 @@
           };
         });
         const sourceText = data?.asOf
-          ? `Base: ${data.source}, ${data.asOf}. Yardeni e FactSet podem divergir por data, universo e metodologia.`
+          ? `Base: ${data.source}, ${data.asOf}. Provedores podem divergir por data, universo e metodologia.`
           : "Base FactSet ainda não preenchida; usando S&P 500 do valuation manual como referência temporária.";
 
         return React.createElement(
           "div",
           { className: "valuation-context" },
           React.createElement("span", { className: "control-title" }, "S&P 500 em contexto"),
-          React.createElement("h2", null, "Base B: Forward P/E vs médias"),
+          React.createElement("h2", null, "Leitura Histórica: S&P 500"),
           React.createElement(
             "div",
             { className: "forward-average-chart" },
@@ -4664,14 +4691,15 @@
               { className: "panel" },
               React.createElement(Sp500ValuationContext, { data: sp500ValuationData, relativeData: valuationData })
             )
-          )
+          ),
+          React.createElement("p", { className: "data-note" }, FORWARD_PE_METHOD_NOTE)
         );
 
         const activeMag7Valuation = mag7ValuationData?.companies?.length ? mag7ValuationData : MAG7_VALUATION_FALLBACK;
         const mag7TableRows = activeMag7Valuation.companies;
         const mag7SourceText = activeMag7Valuation.status === "ok"
-          ? `Base: ${activeMag7Valuation.source}, ${activeMag7Valuation.asOf}. P/E TTM e Forward P/E por empresa; agregado calculado pelo dashboard.`
-          : `Snapshot local: ${activeMag7Valuation.source}, ${activeMag7Valuation.asOf}. Atualização automática entra quando data/mag7-valuation.json carregar.`;
+          ? `Base: ${activeMag7Valuation.source}, ${activeMag7Valuation.asOf}. P/E TTM e Forward P/E por empresa; agregado calculado pelo dashboard. ${FORWARD_PE_METHOD_NOTE}`
+          : `Snapshot local: ${activeMag7Valuation.source}, ${activeMag7Valuation.asOf}. Atualização automática entra quando data/mag7-valuation.json carregar. ${FORWARD_PE_METHOD_NOTE}`;
 
         const megaView = React.createElement(
           React.Fragment,
@@ -4769,7 +4797,7 @@
       };
 
       MODULE_COPY.satellites = {
-        title: "Satélites devem combinar convexidade, veículo correto e tamanho de risco",
+        title: "Satélites combinam convexidade, veículo e tamanho de risco",
         lead: "A alocação satélite não é lista de temas: cada tese precisa casar motor econômico, instrumento e risco de implementação.",
         thesis: "Convexidade",
         subtitle: "ETF vs cesta",
@@ -4779,7 +4807,7 @@
         title: "Na Europa, o core compra o continente — a cesta compra a tese",
         lead: "A exposição ampla diversifica. As melhores teses exigem seleção: defesa, luxo, pharma, soberania digital e industriais.",
         thesis: "Seleção",
-        subtitle: "Europa estratégica",
+          subtitle: "Temas europeus",
       };
 
       MODULE_COPY.china = {
@@ -4847,14 +4875,19 @@
         ["valuation.peRatio", "P/E"],
         ["returnYtdPct", "YTD"],
         ["return1yPct", "1 ano"],
-        ["return3yAnnPct", "3 anos anual."],
-        ["return5yAnnPct", "5 anos anual."],
-        ["vol1yAnnPct", "Vol. 1 ano"],
+        ["return3yAnnPct", "Retorno anualizado 3 anos"],
+        ["return5yAnnPct", "Retorno anualizado 5 anos"],
+        ["vol1yAnnPct", "Volatilidade anualizada 1 ano"],
         ["maxDrawdown1yPct", "Max Drawdown 1 ano"],
         ["beta1yVsSp500", "Beta 1 ano"],
       ];
 
-      const DATA_LAB_GROUPS = ["Fixed Income", "Core Equities", "Setoriais", "Satélites EUA", "Europa Estratégica", "China / China+1", "Hedge"];
+      const renderMetricLabel = (label) =>
+        label === "Volatilidade anualizada 1 ano"
+          ? React.createElement(React.Fragment, null, "Volatilidade anualizada", React.createElement("span", null, "1 ano"))
+          : label;
+
+      const DATA_LAB_GROUPS = ["Fixed Income", "Core Equities", "Setoriais", "Satélites EUA", "Temas Europeus", "China / China+1", "Hedge"];
 
       const dataLabGroupFor = (item) => {
         const category = (item?.category || "").toLowerCase();
@@ -4862,7 +4895,7 @@
         if (category.includes("covered call") || category.includes("minimum volatility") || category.includes("vix") || category.includes("inverse") || category.includes("concentration hedge") || category.includes("gold") || category.includes("swiss franc")) return "Hedge";
         if (category.includes("treasuries") || category.includes("treasury bills") || category.includes("inflation usd") || category.includes("credit") || category.includes("high yield") || category.includes("core bond")) return "Fixed Income";
         if (category.includes("china") || category.includes("em ex-china") || category.includes("china+1") || category.includes("asia technology") || category.includes("copper miners") || category.includes("metals and mining")) return "China / China+1";
-        if (category.includes("luxury") || category.includes("europe healthcare") || category.includes("global healthcare")) return "Europa Estratégica";
+        if (category.includes("luxury") || category.includes("europe healthcare") || category.includes("global healthcare")) return "Temas Europeus";
         if (category.startsWith("core") || category.includes("s&p 500 benchmark") || category.includes("us growth") || category.includes("nasdaq-100")) return "Core Equities";
         return "Satélites EUA";
       };
@@ -4872,7 +4905,7 @@
         "Core Equities": ["EUA amplo", "Growth / Nasdaq", "Core global desenvolvido", "Developed ex-US", "Europa core", "Emergentes"],
         Setoriais: ["Growth / comunicação", "Cíclicos", "Defensivos / yield", "Outros setores"],
         "Satélites EUA": ["IA / semicondutores", "Segurança / defesa", "Infraestrutura / energia", "Onshoring / reindustrialização", "Opcionalidade tecnológica", "Economia restrita"],
-        "Europa Estratégica": ["Defesa", "Luxo / China indireta", "Pharma / healthcare", "Industriais / eletrificação", "Soberania digital"],
+        "Temas Europeus": ["Defesa", "Luxo / China indireta", "Pharma / healthcare", "Industriais / eletrificação", "Soberania digital"],
         "China / China+1": ["China direta", "China indireta", "China+1", "EM ex-China"],
         Hedge: ["Option income", "Redução de beta", "Volatilidade", "Hedge direcional", "Desconcentração", "Macro"],
       };
@@ -4916,7 +4949,7 @@
           return "Economia restrita";
         }
 
-        if (group === "Europa Estratégica") {
+        if (group === "Temas Europeus") {
           if (category.includes("defense")) return "Defesa";
           if (category.includes("luxury")) return "Luxo / China indireta";
           if (category.includes("healthcare")) return "Pharma / healthcare";
@@ -5131,7 +5164,7 @@
                   : null
               )
             : React.createElement("p", { className: "data-note" }, "Série histórica ainda não disponível para este instrumento."),
-          React.createElement("p", { className: "data-note" }, "Retorno total aproximado via adjusted close.")
+          React.createElement("p", { className: "data-note" }, "Retorno total aproximado via adjusted close; dados sujeitos a atraso e revisão.")
         );
       }
 
@@ -5331,7 +5364,7 @@
                     React.createElement("span", null, "Veículo", React.createElement("b", null, active.wrapper || "n/d")),
                     React.createElement("span", null, "Moeda", React.createElement("b", null, active.currency || "n/d")),
                     activeBenchmarkLabel ? React.createElement("span", null, "Benchmark", React.createElement("b", null, activeBenchmarkLabel)) : null,
-                    activeReferenceLabel ? React.createElement("span", null, "Refer?ncia", React.createElement("b", null, activeReferenceLabel)) : null,
+                    activeReferenceLabel ? React.createElement("span", null, "Referência", React.createElement("b", null, activeReferenceLabel)) : null,
                     active.assetClass === "equity" && dataLabGroupFor(active) !== "Hedge" && active.valuation?.source ? React.createElement("span", null, "P/E", React.createElement("b", null, active.valuation.asOf || "manual")) : null,
                     active.performanceChart?.startDate ? React.createElement("span", null, "Histórico", React.createElement("b", null, active.performanceChart.startDate)) : null,
                     active.status !== "ok" ? React.createElement("span", null, "Status", React.createElement("b", null, "manual")) : null
@@ -5343,7 +5376,7 @@
                       React.createElement(
                         "div",
                         { className: "data-lab-metric", key },
-                        React.createElement("span", null, label),
+                        React.createElement("span", null, renderMetricLabel(label)),
                         React.createElement("strong", null, fmtDataLabMetric(key, valueAtPath(active, key)))
                       )
                     )
@@ -5885,9 +5918,9 @@
       }
 
       const CORE_FUNCTIONS = [
-        { fn: "Beta estrutural EUA", why: "Baixo custo, replicação eficiente e longo prazo.", tickers: ["VOO", "CSPX", "VUAA"], note: "Preferir UCITS Acc para offshore não-US quando fiscalmente adequado." },
-        { fn: "Execução / hedge EUA", why: "Liquidez, opções e profundidade de mercado.", tickers: ["SPY"], note: "Melhor para puts, collars, overlays e rebalanceamento tático." },
-        { fn: "Growth estrutural", why: "Nasdaq-100 com menor custo ou versão UCITS.", tickers: ["QQQM", "CNDX", "EQQQ"], note: "QQQ executa melhor; QQQM/UCITS carregam melhor." },
+        { fn: "Beta estrutural EUA", why: "Baixo custo, replicação eficiente e longo prazo.", tickers: ["VOO", "CSPX", "VUAA"], note: "UCITS Acc pode fazer sentido para offshore não-US quando fiscalmente adequado." },
+        { fn: "Execução / hedge EUA", why: "Liquidez, opções e profundidade de mercado.", tickers: ["SPY"], note: "Usado com frequência em puts, collars, overlays e rebalanceamento tático." },
+        { fn: "Growth estrutural", why: "Nasdaq-100 com menor custo ou versão UCITS.", tickers: ["QQQM", "CNDX", "EQQQ"], note: "QQQ tende a ser mais ligado à execução; QQQM/UCITS tendem ao carregamento." },
         { fn: "Growth tático / hedge", why: "Opções profundas e liquidez superior.", tickers: ["QQQ"], note: "Instrumento de trading, não necessariamente melhor veículo fiscal." },
         { fn: "Redução de concentração", why: "Reduz dominância das mega caps.", tickers: ["RSP"], note: "Aumenta exposição a cíclicas e risco de juros." },
         { fn: "Core global desenvolvido", why: "MSCI World com peso relevante em EUA.", tickers: ["IWDA", "SWDA"], note: "Serve para simplificar core global, não para reduzir EUA." },
@@ -6112,11 +6145,11 @@
         IBTM: ["Duration média", "iShares $ Treasury Bond 7-10yr UCITS ETF USD Acc.", "Hedge parcial contra queda de juros.", ["Mais sensível ao ciclo de política monetária.", "Pode ajudar quando a tese pede queda de juros.", "Exige mais convicção do que os vértices curtos."]],
         DTLA: ["Duration longa", "iShares $ Treasury Bond 20+yr UCITS ETF USD Acc.", "Posição direcional em queda de juros.", ["Alta sensibilidade a juros longos.", "Potencial de ganho maior se yields comprimirem.", "Volatilidade relevante; não é simples caixa remunerado."]],
         TIP5: ["Inflação curta", "iShares $ TIPS 0-5 UCITS ETF USD Acc.", "Proteção inflacionária com duration menor.", ["Combina juro real positivo com menor duration.", "Mais alinhado a carrego real do que a aposta em juros longos.", "Evita misturar inflação com duration excessiva."]],
-        ITPS: ["Inflação ampla", "iShares $ TIPS UCITS ETF Acc.", "Inflação americana com mais duration.", ["Protege contra inflação realizada em uma cesta mais ampla.", "Traz mais sensibilidade a juros reais.", "Útil quando a carteira aceita mais duration."]],
+        ITPS: ["Inflação ampla", "iShares $ TIPS UCITS ETF Acc.", "Inflação americana com mais duration.", ["Oferece exposição à inflação realizada em uma cesta mais ampla.", "Traz mais sensibilidade a juros reais.", "Pode compor carteiras que aceitam mais duration."]],
         ITPE: ["Inflação ampla", "iShares $ TIPS UCITS ETF Acc.", "Inflação americana com mais duration.", ["Alternativa para exposição ampla a TIPS.", "A escolha final depende da bolsa/listagem e política operacional.", "Comparar custo, tracking e moeda de negociação."]],
         LQDA: ["Crédito IG USD", "iShares $ Corp Bond UCITS ETF USD Acc.", "Spread corporativo investment grade.", ["Adiciona prêmio de crédito com qualidade maior.", "Não substitui Treasury como hedge de crise.", "Sensível a spread, duration e ciclo corporativo."]],
-        IHYA: ["High Yield USD", "iShares $ High Yield Corp Bond UCITS ETF USD Acc.", "Crédito mais arriscado e yield maior.", ["Carrega mais spread e mais risco de default.", "Funciona melhor quando crédito e ciclo estão construtivos.", "Não deve ser tratado como renda fixa defensiva."]],
-        AGGU: ["Core bond global", "iShares Core Global Aggregate Bond UCITS ETF USD Acc.", "Diversificação global em bonds.", ["Combina governos e crédito global.", "Útil como peça ampla de renda fixa.", "Checar hedge cambial, duration e composição antes de usar como core."]],
+        IHYA: ["High Yield USD", "iShares $ High Yield Corp Bond UCITS ETF USD Acc.", "Crédito mais arriscado e yield maior.", ["Carrega mais spread e mais risco de default.", "Tende a se comportar melhor quando crédito e ciclo estão construtivos.", "Não costuma ser tratado como renda fixa defensiva."]],
+        AGGU: ["Core bond global", "iShares Core Global Aggregate Bond UCITS ETF USD Acc.", "Diversificação global em bonds.", ["Combina governos e crédito global.", "Pode funcionar como peça ampla de renda fixa.", "Hedge cambial, duration e composição mudam a leitura como core."]],
         GLD: ["Hedge macro", "SPDR Gold Shares.", "ETF de ouro físico com alta liquidez.", ["Funciona como ativo real/monetário.", "Ajuda em choques de confiança e regimes adversos.", "Mais usado quando liquidez e profundidade importam."]],
         IAU: ["Hedge macro", "iShares Gold Trust.", "ETF de ouro físico com custo competitivo.", ["Alternativa eficiente para carregar exposição a ouro.", "Útil como diversificador macro de longo prazo.", "Menor foco em trading pesado do que GLD."]],
         "FXF / CHF": ["Hedge macro", "Invesco CurrencyShares Swiss Franc Trust.", "Exposição ao franco suíço contra o dólar.", ["Refúgio histórico em choques de confiança.", "Baixo carrego, liquidez menor que grandes ETFs e risco de intervenção do SNB.", "Dólar é o hedge natural contra Brasil. Franco suíço é hedge de qualidade monetária. Ouro é hedge de regime."]],
@@ -6201,7 +6234,7 @@
           implementation: "ETF",
           reading: "Demanda estrutural, recorrente e menos dependente de CAPEX físico.",
           names: ["Palo Alto", "CrowdStrike", "Fortinet", "Zscaler"],
-          points: ["ETF funciona, mas a composição deve ser monitorada.", "Tema recorrente dentro de segurança digital.", "Menos binário do que quantum ou data centers físicos."],
+          points: ["ETF representa o tema, mas a composição merece acompanhamento.", "Tema recorrente dentro de segurança digital.", "Menos binário do que quantum ou data centers físicos."],
         },
         {
           theme: "Robotics / automação",
@@ -6341,7 +6374,7 @@
           implementation: "Cesta pequena",
           reading: "Opcionalidade alta, baixa previsibilidade e dispersão extrema de resultados.",
           names: ["IBM", "IonQ", "Rigetti", "D-Wave", "Microsoft"],
-          points: ["Tamanho inicial deve ser controlado.", "O tema ainda está escolhendo vencedores.", "ETF pode misturar empresas pouco expostas ao motor real."],
+          points: ["A exposição inicial costuma ser tratada com parcimônia.", "O tema ainda está escolhendo vencedores.", "ETF pode misturar empresas pouco expostas ao motor real."],
         },
       ];
 
@@ -6460,7 +6493,7 @@
               "div",
               { className: "detail-grid" },
               React.createElement("div", { className: "detail-box" }, React.createElement("span", null, "ETF possível"), React.createElement("strong", null, active.etfs)),
-              React.createElement("div", { className: "detail-box" }, React.createElement("span", null, "Implementação"), React.createElement("strong", null, active.implementation)),
+              React.createElement("div", { className: "detail-box" }, React.createElement("span", null, "Alternativa"), React.createElement("strong", null, active.implementation)),
               React.createElement("div", { className: "detail-box" }, React.createElement("span", null, "Qualidade do ETF"), React.createElement("strong", null, active.quality))
             ),
             React.createElement("p", null, active.reading),
@@ -6473,8 +6506,8 @@
                   React.createElement("ul", { className: "satellite-list" }, active.extraCompanies.map((point) => React.createElement("li", { key: point }, point)))
                 )
               : null,
-            React.createElement("div", { className: "detail-box proxy-box" }, React.createElement("span", null, "Nomes / proxies"), React.createElement("strong", null, active.names.join(" · "))),
-            React.createElement("p", { className: "data-note" }, "Base: exemplos e proxies setoriais, junho/2026. Cestas não são exaustivas.")
+            React.createElement("div", { className: "detail-box proxy-box" }, React.createElement("span", null, "Exemplos"), React.createElement("strong", null, active.names.join(" · "))),
+            React.createElement("p", { className: "data-note" }, "Base: exemplos e proxies setoriais, junho/2026. Lista não exaustiva.")
           )
         );
       }
@@ -6483,7 +6516,7 @@
           theme: "Defesa europeia",
           icon: "shield",
           status: "Não",
-          quality: "Cesta superior",
+          quality: "Não há ETF",
           tone: "sat-risk-high",
           implementation: "Cesta",
           etfs: "ETF amplo europeu dilui a tese",
@@ -6497,7 +6530,7 @@
           theme: "Soberania digital",
           icon: "network",
           status: "Não",
-          quality: "Cesta superior",
+          quality: "Não há ETF",
           tone: "sat-risk-high",
           implementation: "Cesta",
           etfs: "Sem ETF limpo para a tese",
@@ -6550,7 +6583,7 @@
           points: ["Conversa com IA, energia e data centers.", "ETF industrial amplo dilui qualidade.", "Cesta captura melhor equipamentos e automação."],
         },
         {
-          theme: "Semis europeus",
+          theme: "Semicondutores europeus",
           icon: "chip",
           status: "Parcial",
           quality: "ETF parcial",
@@ -6610,14 +6643,14 @@
               "div",
               { className: "detail-grid" },
               React.createElement("div", { className: "detail-box" }, React.createElement("span", null, "ETF amplo"), React.createElement("strong", null, active.status)),
-              React.createElement("div", { className: "detail-box" }, React.createElement("span", null, "Implementação"), React.createElement("strong", null, active.implementation)),
+              React.createElement("div", { className: "detail-box" }, React.createElement("span", null, "Alternativa"), React.createElement("strong", null, active.implementation)),
               React.createElement("div", { className: "detail-box" }, React.createElement("span", null, "Leitura do veículo"), React.createElement("strong", null, active.quality)),
               React.createElement("div", { className: "detail-box" }, React.createElement("span", null, "Primeira camada"), React.createElement("strong", null, active.etfs))
             ),
             React.createElement("p", null, active.thesis),
             React.createElement("ul", { className: "satellite-list" }, active.points.map((point) => React.createElement("li", { key: point }, point))),
-            React.createElement("div", { className: "detail-box proxy-box" }, React.createElement("span", null, "Cesta possível"), React.createElement("strong", null, active.names.join(" · "))),
-            React.createElement("p", { className: "data-note" }, "Base: exemplos de ETFs/proxies e cestas estratégicas, junho/2026. Lista não exaustiva.")
+            React.createElement("div", { className: "detail-box proxy-box" }, React.createElement("span", null, "Exemplos"), React.createElement("strong", null, active.names.join(" · "))),
+            React.createElement("p", { className: "data-note" }, "Base: exemplos de ETFs e proxies, junho/2026. Lista não exaustiva.")
           )
         );
       }
@@ -6804,7 +6837,7 @@
             React.createElement("p", null, active.reading),
             React.createElement("ul", { className: "satellite-list" }, active.points.map((point) => React.createElement("li", { key: point }, point))),
             React.createElement("div", { className: "detail-box proxy-box" }, React.createElement("span", null, "Exemplos"), React.createElement("strong", null, active.names.join(" · "))),
-            React.createElement("p", { className: "data-note" }, "Base: exemplos de canais e instrumentos, junho/2026. Pesos e composição devem ser checados no provedor antes da execução.")
+            React.createElement("p", { className: "data-note" }, "Base: exemplos de canais e instrumentos, junho/2026. Composição deve ser checada no provedor.")
           )
         );
       }
@@ -6829,7 +6862,7 @@
           does: "Combina reserva de valor, moeda forte e proteção de regime.",
           use: "Diversificar risco de moeda, confiança institucional e choques macro.",
           limit: "Não é hedge perfeito de queda de bolsa; pode ficar parado em bull market.",
-          reading: "Dólar protege contra Brasil. Franco suíço protege qualidade monetária. Ouro protege regime.",
+          reading: "Dólar é referência de proteção contra Brasil. Franco suíço expressa qualidade monetária. Ouro funciona como hedge de regime.",
           examples: ["GLD: ouro físico com alta liquidez", "IAU: ouro físico com custo competitivo", "FXF / CHF: exposição ao franco suíço"],
         },
         {
@@ -6865,7 +6898,7 @@
           does: "Ganha quando a volatilidade implícita dispara.",
           use: "Stress curto, evento específico ou proteção tática.",
           limit: "Decay e rolagem tornam o carregamento caro.",
-          reading: "Funciona melhor como proteção de emergência.",
+          reading: "Tende a funcionar como proteção de emergência.",
           examples: ["VIXY: futuros curtos de VIX", "VXX: ETN de futuros curtos", "UVXY: alavancado", "UCITS: alternativa offshore"],
         },
         {
@@ -6900,7 +6933,7 @@
           instruments: "RSP, QQEW, USMV",
           does: "Reduz dependência de mega caps e liderança estreita.",
           use: "Quando o risco principal é concentração em poucos nomes.",
-          limit: "Não protege queda geral do mercado.",
+          limit: "Não costuma mitigar queda geral do mercado.",
           reading: "Hedge de concentração, não de crash.",
           examples: ["RSP: S&P 500 equal weight", "QQEW: Nasdaq 100 equal weight", "USMV: min-vol com viés defensivo"],
         },
@@ -6997,7 +7030,7 @@
               { className: "detail-grid" },
               React.createElement("div", { className: "detail-box" }, React.createElement("span", null, "Instrumentos"), React.createElement("strong", null, active.instruments)),
               React.createElement("div", { className: "detail-box" }, React.createElement("span", null, "O que faz"), React.createElement("strong", null, active.does)),
-              React.createElement("div", { className: "detail-box" }, React.createElement("span", null, "Uso correto"), React.createElement("strong", null, active.use)),
+              React.createElement("div", { className: "detail-box" }, React.createElement("span", null, "Uso típico"), React.createElement("strong", null, active.use)),
               React.createElement("div", { className: "detail-box" }, React.createElement("span", null, "Limitação"), React.createElement("strong", null, active.limit))
             ),
             React.createElement("p", null, active.reading),
@@ -7007,7 +7040,7 @@
         );
       }
 
-      function CoreModule({ functions = CORE_EQUITY_FUNCTIONS, initialEtf = "VOO", legendMode = "equity" } = {}) {
+      function CoreModule({ functions = CORE_EQUITY_FUNCTIONS, initialEtf = "VOO", legendMode = "equity", showUcitsToggle = true } = {}) {
         const [selectedEtf, setSelectedEtf] = useState(initialEtf);
         const [ucitsView, setUcitsView] = useState("all");
         const [geoData, setGeoData] = useState(null);
@@ -7077,12 +7110,14 @@
                         React.createElement("span", { className: "etf-token etf-emerging" }, "Emergentes")
                       )
                 ),
-                React.createElement(
-                  "div",
-                  { className: "ucits-toggle", "aria-label": "Destaque UCITS" },
-                  React.createElement("button", { type: "button", "aria-pressed": ucitsView === "all", onClick: () => setCoreUcitsView("all") }, "Todos"),
-                  React.createElement("button", { type: "button", "aria-pressed": ucitsView === "ucits", onClick: () => setCoreUcitsView("ucits") }, "UCITS")
-                )
+                showUcitsToggle
+                  ? React.createElement(
+                      "div",
+                      { className: "ucits-toggle", "aria-label": "Destaque UCITS" },
+                      React.createElement("button", { type: "button", "aria-pressed": ucitsView === "all", onClick: () => setCoreUcitsView("all") }, "Todos"),
+                      React.createElement("button", { type: "button", "aria-pressed": ucitsView === "ucits", onClick: () => setCoreUcitsView("ucits") }, "UCITS")
+                    )
+                  : null
               ),
               React.createElement(
                 "div",
@@ -7140,7 +7175,7 @@
       }
 
       function FixedIncomeModule() {
-        return React.createElement(CoreModule, { functions: FIXED_INCOME_FUNCTIONS, initialEtf: "IB01", legendMode: "fixed" });
+        return React.createElement(CoreModule, { functions: FIXED_INCOME_FUNCTIONS, initialEtf: "IB01", legendMode: "fixed", showUcitsToggle: false });
       }
 
       const SECTOR_GICS_ETFS = [
@@ -7241,7 +7276,7 @@
         ["core", "Core Equities"],
         ["sectors", "Setoriais"],
         ["satellites", "Satélites EUA"],
-        ["europe", "Europa Estratégica"],
+        ["europe", "Temas Europeus"],
         ["china", "China / China+1"],
         ["hedges", "Hedge"],
       ];
@@ -7289,6 +7324,24 @@
         ["tech", "Temas", "#ffae6b"],
       ];
 
+      const FULL_DISCLAIMER =
+        "Dados e análises para fins informativos e educacionais. Não constituem recomendação de investimento, consultoria financeira, tributária ou legal. Informações podem conter atrasos, aproximações ou divergências entre provedores. Verifique fontes, preços, custos, riscos e adequação antes de qualquer decisão.";
+
+      const SHORT_DISCLAIMER =
+        "Conteúdo informativo e educacional. Não constitui recomendação de investimento ou tributária. Dados podem estar defasados, aproximados ou sujeitos a revisão.";
+
+      const DATALAB_DISCLAIMER_EXTRA =
+        "Retorno total aproximado via adjusted close; dados sujeitos a atraso e revisão.";
+
+      function Disclaimer({ full = false, dataLab = false }) {
+        return React.createElement(
+          "section",
+          { className: "panel disclaimer-panel" },
+          full ? React.createElement("strong", null, "Disclaimer") : null,
+          React.createElement("span", null, full ? FULL_DISCLAIMER : `${SHORT_DISCLAIMER}${dataLab ? ` ${DATALAB_DISCLAIMER_EXTRA}` : ""}`)
+        );
+      }
+
       function HomeModule({ setActiveModule, theme, setTheme }) {
         return React.createElement(
           "main",
@@ -7299,7 +7352,8 @@
             React.createElement(
               "div",
               null,
-              React.createElement("h2", null, "Dashboard de alocação global")
+              React.createElement("h2", null, "Arquitetura Global"),
+              React.createElement("p", null, "Macro, valuation, temas e veículos em uma única leitura.")
             ),
             React.createElement(
               "div",
@@ -7339,6 +7393,7 @@
               )
             )
           ),
+          React.createElement(Disclaimer, { full: true }),
           React.createElement("span", { className: "brand-credit" }, "Designed by General Channels Co.")
         );
       }
@@ -7516,7 +7571,8 @@
                   React.createElement("h1", null, selectedCopy.title),
                   React.createElement("p", null, selectedCopy.lead)
                 ),
-                React.createElement(MobileModuleContent, { activeModule: selectedModule, mode, setMode, theme, curveMeta, fedPolicy })
+                React.createElement(MobileModuleContent, { activeModule: selectedModule, mode, setMode, theme, curveMeta, fedPolicy }),
+                React.createElement(Disclaimer, { dataLab: selectedModule === "dataLab" })
               )
             : React.createElement(
                 React.Fragment,
@@ -7524,8 +7580,8 @@
                 React.createElement(
                   "section",
                   { className: "mobile-hero" },
-                  React.createElement("h1", null, "Dashboard de alocação global"),
-                  React.createElement("p", null, "Versão mobile em modo consulta: escolha uma tese, abra os detalhes e navegue sem tentar espremer o slide desktop na tela.")
+                  React.createElement("h1", null, "Arquitetura Global"),
+                  React.createElement("p", null, "Macro, valuation, temas e veículos em uma única leitura.")
                 ),
                 React.createElement(
                   "section",
@@ -7549,6 +7605,7 @@
                     )
                   )
                 ),
+                React.createElement(Disclaimer, { full: true }),
                 React.createElement("span", { className: "brand-credit" }, "Designed by General Channels Co.")
               )
         );
@@ -8115,7 +8172,8 @@
                   ? React.createElement(EtfsModule)
                   : activeModule === "dataLab"
                     ? React.createElement(DataLabModule)
-                    : React.createElement(EtfsModule)
+                    : React.createElement(EtfsModule),
+          activeModule === "home" ? null : React.createElement(Disclaimer, { dataLab: activeModule === "dataLab" })
         );
       }
 

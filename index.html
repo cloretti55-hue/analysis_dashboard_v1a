@@ -172,43 +172,22 @@
         inset: 0;
         pointer-events: none;
         background:
-          linear-gradient(90deg, rgba(72, 214, 233, 0.08) 1px, transparent 1px),
-          linear-gradient(180deg, rgba(72, 214, 233, 0.06) 1px, transparent 1px),
-          radial-gradient(circle at 88% 18%, rgba(72, 214, 233, 0.16), transparent 18%);
-        background-size: 42px 42px, 42px 42px, auto;
-        opacity: 0.32;
+          linear-gradient(90deg, rgba(72, 214, 233, 0.13) 1px, transparent 1px),
+          linear-gradient(180deg, rgba(72, 214, 233, 0.1) 1px, transparent 1px);
+        background-size: 38px 38px;
+        opacity: 0.44;
       }
 
       body.theme-light .home-hero::before {
         background:
-          linear-gradient(90deg, rgba(23, 48, 77, 0.08) 1px, transparent 1px),
-          linear-gradient(180deg, rgba(23, 48, 77, 0.06) 1px, transparent 1px),
-          radial-gradient(circle at 88% 18%, rgba(35, 104, 210, 0.12), transparent 18%);
-        opacity: 0.44;
+          linear-gradient(90deg, rgba(23, 48, 77, 0.11) 1px, transparent 1px),
+          linear-gradient(180deg, rgba(23, 48, 77, 0.085) 1px, transparent 1px);
+        opacity: 0.5;
       }
 
       .home-hero > * {
         position: relative;
         z-index: 1;
-      }
-
-      .home-kicker {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 12px;
-        color: var(--muted);
-        font-size: 11px;
-        font-weight: 850;
-        text-transform: uppercase;
-      }
-
-      .home-kicker::before {
-        content: "";
-        width: 34px;
-        height: 1px;
-        background: var(--focus);
-        opacity: 0.8;
       }
 
       .home-hero h2 {
@@ -222,28 +201,6 @@
         max-width: 780px;
         color: var(--muted);
         line-height: 1.55;
-      }
-
-      .home-signal-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 18px;
-      }
-
-      .home-signal {
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        padding: 6px 9px;
-        color: var(--muted);
-        background: rgba(255, 255, 255, 0.035);
-        font-size: 11px;
-        font-weight: 850;
-        text-transform: uppercase;
-      }
-
-      body.theme-light .home-signal {
-        background: rgba(10, 32, 55, 0.045);
       }
 
       .home-stamp {
@@ -7481,18 +7438,8 @@
             React.createElement(
               "div",
               null,
-              React.createElement("span", { className: "home-kicker" }, "Portfolio architecture"),
               React.createElement("h2", null, "Arquitetura Global"),
-              React.createElement("p", null, "Macro, valuation, temas e veículos em uma única leitura."),
-              React.createElement(
-                "div",
-                { className: "home-signal-row" },
-                React.createElement("span", { className: "home-signal" }, "Rates"),
-                React.createElement("span", { className: "home-signal" }, "Valuation"),
-                React.createElement("span", { className: "home-signal" }, "ETFs"),
-                React.createElement("span", { className: "home-signal" }, "Themes"),
-                React.createElement("span", { className: "home-signal" }, "Data")
-              )
+              React.createElement("p", null, "Macro, valuation, temas e veículos em uma única leitura.")
             ),
             React.createElement(
               "div",

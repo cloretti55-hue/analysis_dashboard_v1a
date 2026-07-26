@@ -152,8 +152,30 @@
       }
 
       .home-layout {
+        position: relative;
         display: grid;
         gap: 18px;
+        padding: 0;
+        isolation: isolate;
+      }
+
+      .home-layout::before {
+        content: "";
+        position: absolute;
+        inset: -18px;
+        z-index: -2;
+        border-radius: 14px;
+        background:
+          linear-gradient(90deg, rgba(5, 13, 25, 0.82), rgba(5, 13, 25, 0.32) 48%, rgba(5, 13, 25, 0.08)),
+          url("assets/themes/home-market-background.png") center / cover no-repeat;
+        opacity: 0.78;
+      }
+
+      body.theme-light .home-layout::before {
+        background:
+          linear-gradient(90deg, rgba(244, 247, 251, 0.96), rgba(244, 247, 251, 0.76) 48%, rgba(244, 247, 251, 0.2)),
+          url("assets/themes/home-market-background.png") center / cover no-repeat;
+        opacity: 0.96;
       }
 
       .home-hero {
@@ -167,22 +189,11 @@
       }
 
       .home-hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background:
-          linear-gradient(90deg, rgba(72, 214, 233, 0.08) 1px, transparent 1px),
-          linear-gradient(180deg, rgba(72, 214, 233, 0.06) 1px, transparent 1px);
-        background-size: 42px 42px;
-        opacity: 0.28;
+        content: none;
       }
 
       body.theme-light .home-hero::before {
-        background:
-          linear-gradient(90deg, rgba(23, 48, 77, 0.07) 1px, transparent 1px),
-          linear-gradient(180deg, rgba(23, 48, 77, 0.05) 1px, transparent 1px);
-        opacity: 0.34;
+        content: none;
       }
 
       .home-hero > * {
@@ -201,94 +212,6 @@
         max-width: 780px;
         color: var(--muted);
         line-height: 1.55;
-      }
-
-      .home-watermark {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        z-index: 0;
-        color: rgba(72, 214, 233, 0.34);
-      }
-
-      body.theme-light .home-watermark {
-        color: rgba(23, 48, 77, 0.34);
-      }
-
-      .home-watermark span {
-        position: absolute;
-        color: currentColor;
-        font-size: 13px;
-        font-weight: 850;
-        letter-spacing: 0.02em;
-        white-space: nowrap;
-        text-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
-      }
-
-      .home-watermark .wm-a {
-        top: 18px;
-        right: 18%;
-      }
-
-      .home-watermark .wm-b {
-        top: 58px;
-        right: 7%;
-      }
-
-      .home-watermark .wm-c {
-        right: 30%;
-        bottom: 24px;
-      }
-
-      .home-watermark .wm-d {
-        right: 11%;
-        bottom: 68px;
-      }
-
-      .home-watermark .wm-e {
-        left: 48%;
-        top: 32px;
-        opacity: 0.72;
-      }
-
-      .home-watermark-chart {
-        position: absolute;
-        right: 34px;
-        bottom: 18px;
-        width: min(430px, 44%);
-        height: 112px;
-        overflow: visible;
-      }
-
-      .home-watermark-mini {
-        position: absolute;
-        right: 22%;
-        top: 76px;
-        width: 150px;
-        height: 48px;
-        overflow: visible;
-      }
-
-      .home-watermark-chart path,
-      .home-watermark-chart polyline,
-      .home-watermark-mini path,
-      .home-watermark-mini polyline,
-      .home-watermark-mini line {
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 2;
-      }
-
-      .home-watermark-chart path,
-      .home-watermark-mini path {
-        opacity: 0.82;
-      }
-
-      .home-watermark-chart polyline,
-      .home-watermark-mini polyline,
-      .home-watermark-mini line {
-        opacity: 0.42;
-        stroke-dasharray: 6 8;
       }
 
       .home-stamp {
@@ -313,7 +236,8 @@
         border: 1px solid var(--line);
         border-radius: 8px;
         padding: 18px;
-        background: rgba(255, 255, 255, 0.04);
+        background: rgba(255, 255, 255, 0.065);
+        backdrop-filter: blur(10px);
         color: var(--ink);
         text-align: left;
         display: grid;
@@ -322,7 +246,7 @@
       }
 
       body.theme-light .home-card {
-        background: rgba(10, 32, 55, 0.04);
+        background: rgba(255, 255, 255, 0.68);
       }
 
       .home-card:hover {
@@ -670,39 +594,6 @@
       @media (max-width: 720px) {
         .home-hero {
           grid-template-columns: 1fr;
-        }
-
-        .home-watermark {
-          opacity: 0.55;
-        }
-
-        .home-watermark .wm-a,
-        .home-watermark .wm-d,
-        .home-watermark-mini {
-          display: none;
-        }
-
-        .home-watermark .wm-b {
-          top: 18px;
-          right: 14px;
-        }
-
-        .home-watermark .wm-c {
-          right: 22px;
-          bottom: 18px;
-        }
-
-        .home-watermark .wm-e {
-          left: auto;
-          right: 112px;
-          top: 54px;
-        }
-
-        .home-watermark-chart {
-          right: 12px;
-          bottom: 12px;
-          width: 62%;
-          height: 90px;
         }
 
         .home-grid {
@@ -7556,28 +7447,6 @@
           React.createElement(
             "section",
             { className: "panel home-hero" },
-            React.createElement(
-              "div",
-              { className: "home-watermark", "aria-hidden": true },
-              React.createElement("span", { className: "wm-a" }, "10Y 4.51%"),
-              React.createElement("span", { className: "wm-b" }, "FWD P/E 19.9x"),
-              React.createElement("span", { className: "wm-c" }, "REAL 10Y 2.21%"),
-              React.createElement("span", { className: "wm-d" }, "30s10s +44 bps"),
-              React.createElement("span", { className: "wm-e" }, "r > g"),
-              React.createElement(
-                "svg",
-                { className: "home-watermark-chart", viewBox: "0 0 520 120", role: "presentation" },
-                React.createElement("polyline", { points: "8,82 72,74 136,79 206,55 266,64 330,42 392,48 456,31 512,38" }),
-                React.createElement("path", { d: "M8 96 C62 88, 88 67, 136 74 S218 101, 266 70 S350 28, 396 39 S468 60, 512 42" })
-              ),
-              React.createElement(
-                "svg",
-                { className: "home-watermark-mini", viewBox: "0 0 150 48", role: "presentation" },
-                React.createElement("line", { x1: 0, x2: 150, y1: 36, y2: 36 }),
-                React.createElement("polyline", { points: "4,32 34,28 64,25 94,18 126,13 146,8" }),
-                React.createElement("path", { d: "M132 8 L146 8 L139 20" })
-              )
-            ),
             React.createElement(
               "div",
               null,

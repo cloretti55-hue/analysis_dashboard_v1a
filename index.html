@@ -203,66 +203,65 @@
         line-height: 1.55;
       }
 
-      .home-market-ornament {
-        width: min(560px, 100%);
-        margin-top: 22px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        padding: 12px 14px;
-        background: rgba(255, 255, 255, 0.045);
+      .home-watermark {
+        position: absolute;
+        inset: 10px 22px 10px auto;
+        width: min(620px, 52%);
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.28;
         display: grid;
-        grid-template-columns: 1fr 1.2fr;
-        gap: 14px;
-        align-items: center;
+        align-content: center;
+        gap: 10px;
+        color: var(--focus);
       }
 
-      body.theme-light .home-market-ornament {
-        background: rgba(255, 255, 255, 0.72);
-        border-color: rgba(23, 48, 77, 0.16);
+      body.theme-light .home-watermark {
+        opacity: 0.22;
+        color: #17304d;
       }
 
-      .home-ornament-numbers {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 8px;
-      }
-
-      .home-ornament-numbers span {
-        color: var(--muted);
-        font-size: 10px;
+      .home-watermark-numbers {
+        display: flex;
+        justify-content: flex-end;
+        gap: 18px;
+        color: currentColor;
+        font-size: clamp(22px, 3vw, 44px);
         font-weight: 850;
-        text-transform: uppercase;
+        line-height: 1;
+        text-shadow: 0 12px 34px rgba(0, 0, 0, 0.16);
+        white-space: nowrap;
       }
 
-      .home-ornament-numbers strong {
-        display: block;
-        margin-top: 4px;
-        color: var(--ink);
-        font-size: 18px;
-        font-weight: 850;
+      .home-watermark-numbers span:nth-child(2) {
+        opacity: 0.72;
       }
 
-      .home-ornament-chart {
-        width: 100%;
-        height: 58px;
+      .home-watermark-numbers span:nth-child(3) {
+        opacity: 0.54;
+      }
+
+      .home-watermark-chart {
+        justify-self: end;
+        width: min(520px, 100%);
+        height: 120px;
         overflow: visible;
       }
 
-      .home-ornament-grid {
-        stroke: var(--line);
-        stroke-width: 1;
-      }
-
-      .home-ornament-line {
+      .home-watermark-chart path,
+      .home-watermark-chart polyline {
         fill: none;
-        stroke: var(--focus);
-        stroke-width: 3;
+        stroke: currentColor;
+        stroke-width: 2;
       }
 
-      .home-ornament-dot {
-        fill: var(--focus);
-        stroke: var(--surface);
-        stroke-width: 2;
+      .home-watermark-chart path {
+        opacity: 0.78;
+      }
+
+      .home-watermark-chart polyline {
+        opacity: 0.34;
+        stroke-dasharray: 6 8;
       }
 
       .home-stamp {
@@ -643,10 +642,6 @@
 
       @media (max-width: 720px) {
         .home-hero {
-          grid-template-columns: 1fr;
-        }
-
-        .home-market-ornament {
           grid-template-columns: 1fr;
         }
 
@@ -7503,27 +7498,26 @@
             { className: "panel home-hero" },
             React.createElement(
               "div",
-              null,
-              React.createElement("h2", null, "Arquitetura Global"),
-              React.createElement("p", null, "Macro, valuation, temas e veículos em uma única leitura."),
+              { className: "home-watermark", "aria-hidden": true },
               React.createElement(
                 "div",
-                { className: "home-market-ornament", "aria-hidden": true },
-                React.createElement(
-                  "div",
-                  { className: "home-ornament-numbers" },
-                  React.createElement("span", null, "Rates", React.createElement("strong", null, "4.51%")),
-                  React.createElement("span", null, "Fwd P/E", React.createElement("strong", null, "19.9x")),
-                  React.createElement("span", null, "Real 10Y", React.createElement("strong", null, "2.21%"))
-                ),
-                React.createElement(
-                  "svg",
-                  { className: "home-ornament-chart", viewBox: "0 0 260 58", role: "presentation" },
-                  [12, 29, 46].map((y) => React.createElement("line", { className: "home-ornament-grid", key: y, x1: 0, x2: 260, y1: y, y2: y })),
-                  React.createElement("path", { className: "home-ornament-line", d: "M2 42 C32 36, 42 18, 70 25 S118 47, 145 31 S190 9, 218 19 S244 34, 258 22" }),
-                  React.createElement("circle", { className: "home-ornament-dot", cx: 258, cy: 22, r: 4 })
-                )
+                { className: "home-watermark-numbers" },
+                React.createElement("span", null, "4.51%"),
+                React.createElement("span", null, "19.9x"),
+                React.createElement("span", null, "2.21%")
+              ),
+              React.createElement(
+                "svg",
+                { className: "home-watermark-chart", viewBox: "0 0 520 120", role: "presentation" },
+                React.createElement("polyline", { points: "4,92 70,82 132,88 198,56 260,67 326,34 390,42 456,22 516,30" }),
+                React.createElement("path", { d: "M4 96 C58 88, 82 68, 132 74 S216 105, 260 70 S348 20, 396 34 S470 58, 516 36" })
               )
+            ),
+            React.createElement(
+              "div",
+              null,
+              React.createElement("h2", null, "Arquitetura Global"),
+              React.createElement("p", null, "Macro, valuation, temas e veículos em uma única leitura.")
             ),
             React.createElement(
               "div",

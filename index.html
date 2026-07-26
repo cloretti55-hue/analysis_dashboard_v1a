@@ -166,16 +166,16 @@
         z-index: -2;
         border-radius: 14px;
         background:
-          linear-gradient(90deg, rgba(5, 13, 25, 0.82), rgba(5, 13, 25, 0.32) 48%, rgba(5, 13, 25, 0.08)),
+          linear-gradient(90deg, rgba(5, 13, 25, 0.74), rgba(5, 13, 25, 0.24) 48%, rgba(5, 13, 25, 0.04)),
           url("assets/themes/home-market-background.png") center / cover no-repeat;
-        opacity: 0.78;
+        opacity: 0.9;
       }
 
       body.theme-light .home-layout::before {
         background:
-          linear-gradient(90deg, rgba(244, 247, 251, 0.96), rgba(244, 247, 251, 0.76) 48%, rgba(244, 247, 251, 0.2)),
+          linear-gradient(90deg, rgba(244, 247, 251, 0.9), rgba(244, 247, 251, 0.58) 48%, rgba(244, 247, 251, 0.08)),
           url("assets/themes/home-market-background.png") center / cover no-repeat;
-        opacity: 0.96;
+        opacity: 1;
       }
 
       .home-hero {
@@ -233,11 +233,11 @@
 
       .home-card {
         min-height: 220px;
-        border: 1px solid var(--line);
+        border: 1px solid rgba(255, 255, 255, 0.24);
         border-radius: 8px;
         padding: 18px;
-        background: rgba(255, 255, 255, 0.065);
-        backdrop-filter: blur(10px);
+        background: rgba(7, 17, 29, 0.46);
+        backdrop-filter: blur(12px);
         color: var(--ink);
         text-align: left;
         display: grid;
@@ -246,7 +246,8 @@
       }
 
       body.theme-light .home-card {
-        background: rgba(255, 255, 255, 0.68);
+        border-color: rgba(23, 48, 77, 0.24);
+        background: rgba(255, 255, 255, 0.58);
       }
 
       .home-card:hover {
@@ -275,11 +276,11 @@
 
       .brand-credit {
         justify-self: end;
-        color: var(--muted);
+        color: #000;
         font-size: 11px;
         font-weight: 850;
         letter-spacing: 0;
-        opacity: 0.68;
+        opacity: 0.82;
       }
 
       .disclaimer-panel {

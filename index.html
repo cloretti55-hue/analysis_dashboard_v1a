@@ -1948,7 +1948,7 @@
 
       .pe-history-svg {
         width: 100%;
-        height: 300px;
+        height: 240px;
         overflow: visible;
       }
 
@@ -1989,8 +1989,22 @@
 
       .pe-history-kpis {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 10px;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .pe-history-kpis .valuation-metric {
+        padding: 8px 10px;
+      }
+
+      .pe-history-kpis .valuation-metric span {
+        font-size: 10px;
+        letter-spacing: 0.02em;
+      }
+
+      .pe-history-kpis .valuation-metric strong {
+        margin-top: 4px;
+        font-size: 18px;
       }
 
       .pe-history-legend {
@@ -4371,7 +4385,7 @@
         return React.createElement(
           "div",
           { className: "equity-pe-chart" },
-          React.createElement("h2", null, "Leitura Relativa: Segmentos de Mercado"),
+          React.createElement("h2", null, "Forward P/E relativo: segmentos de mercado"),
           React.createElement(
             "div",
             { className: "pe-bars" },
@@ -4437,8 +4451,8 @@
         return React.createElement(
           "div",
           { className: "valuation-context" },
-          React.createElement("span", { className: "control-title" }, "S&P 500 em contexto"),
-          React.createElement("h2", null, "Leitura Histórica: S&P 500"),
+          React.createElement("span", { className: "control-title" }, "Forward P/E em contexto"),
+          React.createElement("h2", null, "S&P 500: Forward P/E vs médias"),
           React.createElement(
             "div",
             { className: "forward-average-chart" },
@@ -4761,7 +4775,7 @@
                 React.createElement(
                   "div",
                   null,
-                  React.createElement("span", { className: "control-title" }, "Valuation relativo")
+                  React.createElement("span", { className: "control-title" }, "Forward P/E relativo")
                 )
               ),
               React.createElement(EquityPeChart, { valuationData })

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "environment": "labs",
-  "generatedAt": "2026-07-30T13:13:55+00:00",
+  "generatedAt": "2026-07-30T20:06:10+00:00",
   "summary": {
     "datasetCount": 11,
     "statusCounts": {
@@ -165,19 +165,18 @@
       ],
       "producer": "scripts/update-etf-performance.py",
       "workflow": ".github/workflows/update-etf-performance.yml",
-      "sha256": "99802d33bd2288c3efc16b218f53466f1caee7ed40fe741e1e5fd2abca1b95ae",
+      "sha256": "b4f9029cf7ebf674e74d127c4c8b0dc057c17fdb80341dc39e5550f095dd1d2e",
       "recordCount": 100,
-      "chartCoverage": 0.89,
+      "chartCoverage": 1.0,
       "statusCounts": {
-        "error": 11,
-        "ok": 89
+        "ok": 100
       },
-      "staleCount": 0,
+      "staleCount": 11,
       "issues": [
         {
           "severity": "warning",
-          "code": "instrument_errors",
-          "message": "11 instrument(s) failed refresh"
+          "code": "stale_instruments",
+          "message": "11 instrument(s) use prior valid data"
         }
       ]
     },

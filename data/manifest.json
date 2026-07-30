@@ -86,14 +86,14 @@
       "path": "data/sp500-valuation.json",
       "kind": "generated",
       "status": "ok",
-      "asOf": "2026-07-17",
+      "asOf": "2026-07-24",
       "maxAgeDays": 14,
       "consumer": [
         "Equity Valuation"
       ],
       "producer": "scripts/update-sp500-valuation.py",
       "workflow": ".github/workflows/update-sp500-valuation.yml",
-      "sha256": "9491c5de181ace76112285c497743db5cfb7087594ce7b21d521cc8ffee5d47d",
+      "sha256": "d550effd971bd06fd58e42d9a77ec31b3338ee206852a376a743033ed2ba0549",
       "issues": []
     },
     {

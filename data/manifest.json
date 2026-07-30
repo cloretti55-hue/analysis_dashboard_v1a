@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "environment": "labs",
-  "generatedAt": "2026-07-30T20:10:17+00:00",
+  "generatedAt": "2026-07-30T20:13:43+00:00",
   "summary": {
     "datasetCount": 11,
     "statusCounts": {
@@ -212,14 +212,14 @@
       "path": "data/etf-geography.json",
       "kind": "generated",
       "status": "partial",
-      "asOf": "2026-07-24",
+      "asOf": "2026-07-30",
       "maxAgeDays": 45,
       "consumer": [
         "ETFs"
       ],
       "producer": "scripts/update-etf-geography.py",
       "workflow": ".github/workflows/update-etf-geography.yml",
-      "sha256": "1b5f7a7536424922a2a3b2591039cea11ab541dca7e015bb53bfcc27439aa5e1",
+      "sha256": "eb6c1a61e619d00e275e619f735242367257092a1c37563059644abc4763f5fa",
       "recordCount": 13,
       "statusCounts": {
         "seed_fallback": 13

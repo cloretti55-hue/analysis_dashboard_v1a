@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "environment": "labs",
-  "generatedAt": "2026-07-30T20:13:43+00:00",
+  "generatedAt": "2026-07-30T20:36:54+00:00",
   "summary": {
     "datasetCount": 11,
     "statusCounts": {
       "manual": 2,
-      "ok": 5,
-      "partial": 2,
-      "stale": 2
+      "ok": 7,
+      "partial": 1,
+      "stale": 1
     },
     "blockingErrorCount": 0
   },
@@ -157,7 +157,7 @@
       "id": "etf-performance",
       "path": "data/etf-performance.json",
       "kind": "generated",
-      "status": "partial",
+      "status": "ok",
       "asOf": "2026-07-30",
       "maxAgeDays": 5,
       "consumer": [
@@ -165,18 +165,19 @@
       ],
       "producer": "scripts/update-etf-performance.py",
       "workflow": ".github/workflows/update-etf-performance.yml",
-      "sha256": "b4f9029cf7ebf674e74d127c4c8b0dc057c17fdb80341dc39e5550f095dd1d2e",
+      "sha256": "588f2e98c090cbea5b731173bd12410c58c0c1090e56ee46eaad6d71f123bb61",
       "recordCount": 100,
       "chartCoverage": 1.0,
       "statusCounts": {
         "ok": 100
       },
-      "staleCount": 11,
+      "staleCount": 0,
+      "staleBenchmarkCount": 11,
       "issues": [
         {
           "severity": "warning",
-          "code": "stale_instruments",
-          "message": "11 instrument(s) use prior valid data"
+          "code": "stale_benchmarks",
+          "message": "11 instrument(s) use a prior benchmark series"
         }
       ]
     },
@@ -184,26 +185,27 @@
       "id": "fixed-income-performance",
       "path": "data/fixed-income-performance.json",
       "kind": "generated_fallback",
-      "status": "stale",
-      "asOf": "2026-07-23",
+      "status": "ok",
+      "asOf": "2026-07-30",
       "maxAgeDays": 5,
       "consumer": [
         "Data Lab"
       ],
       "producer": "scripts/update-etf-performance.py",
       "workflow": ".github/workflows/update-etf-performance.yml",
-      "sha256": "1891eb16707239e73412b27d045f30902e1bcc829ffe6b45ff52b83fff7a22ee",
+      "sha256": "4fab8580d003fce217fd5ba6f8b0882842473e1e02a0a4c45961ce6267af6b94",
       "recordCount": 11,
       "chartCoverage": 1.0,
       "statusCounts": {
         "ok": 11
       },
       "staleCount": 0,
+      "staleBenchmarkCount": 11,
       "issues": [
         {
           "severity": "warning",
-          "code": "stale_dataset",
-          "message": "Dataset asOf=2026-07-23 exceeds maxAgeDays=5"
+          "code": "stale_benchmarks",
+          "message": "11 instrument(s) use a prior benchmark series"
         }
       ]
     },

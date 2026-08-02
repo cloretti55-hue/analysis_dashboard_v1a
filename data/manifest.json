@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "environment": "labs",
-  "generatedAt": "2026-07-31T22:34:40+00:00",
+  "generatedAt": "2026-08-02T00:00:00+00:00",
   "summary": {
     "datasetCount": 11,
     "statusCounts": {
@@ -101,14 +101,14 @@
       "path": "data/sp500-pe-history.json",
       "kind": "generated",
       "status": "ok",
-      "asOf": "2026-07-29",
+      "asOf": "2026-07-31",
       "maxAgeDays": 45,
       "consumer": [
         "Equity Valuation"
       ],
       "producer": "scripts/update-sp500-pe-history.py",
       "workflow": ".github/workflows/update-sp500-pe-history.yml",
-      "sha256": "9665673447fd0f9be50aa1f6f526db4fd866bede7f1c3922abc2e631cc961a69",
+      "sha256": "38e88587b06c837ff234e76f3a5102b215d5ee7b2459835de9602f26d22ccbf5",
       "recordCount": 1866,
       "yearEndCount": 156,
       "issues": []

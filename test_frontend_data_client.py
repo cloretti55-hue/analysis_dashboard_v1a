@@ -1,0 +1,73 @@
+import re
+import unittest
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+INDEX = (ROOT / "index.html").read_text(encoding="utf-8")
+APP_JS = (ROOT / "assets" / "js" / "app.js").read_text(encoding="utf-8")
+
+
+class FrontendDataClientTests(unittest.TestCase):
+    def test_runtime_does_not_depend_on_github_raw(self):
+        self.assertNotIn("raw.githubusercontent.com", APP_JS)
+
+    def test_fetch_is_centralized_in_data_client(self):
+        fetch_calls = [match.start() for match in re.finditer(r"\bfetch\(", APP_JS)]
+        self.assertEqual(len(fetch_calls), 1)
+        client_start = APP_JS.index("const DataClient")
+        client_end = APP_JS.index("const DATASET_STATUS_LABELS")
+        self.assertGreater(fetch_calls[0], client_start)
+        self.assertLess(fetch_calls[0], client_end)
+
+    def test_all_runtime_datasets_have_contracts(self):
+        expected = {
+            "curve-us",
+            "fed-policy",
+            "equity-valuation",
+            "sp500-valuation",
+            "sp500-pe-history",
+            "mag7-valuation",
+            "etf-performance",
+            "fixed-income-performance",
+            "etf-geography",
+        }
+        definitions = APP_JS[APP_JS.index("const DATASET_DEFINITIONS"):APP_JS.index("const DataClient")]
+        for dataset_id in expected:
+            self.assertIn(f'"{dataset_id}"', definitions)
+
+    def test_modules_use_isolated_results_instead_of_throwing_batch(self):
+        self.assertIn('DataClient.loadMany(["etf-performance", "fixed-income-performance"])', APP_JS)
+        self.assertIn('DataClient.load("curve-us")', APP_JS)
+        self.assertIn('DataClient.load("fed-policy")', APP_JS)
+        self.assertIn('DataClient.load("etf-geography")', APP_JS)
+        self.assertIn("if (!mainResult.ok)", APP_JS)
+        self.assertIn("if (!result.ok)", APP_JS)
+
+    def test_data_lab_exposes_provenance_and_freshness(self):
+        for label in (
+            "Proveniência do Data Lab",
+            "Base principal",
+            "Renda fixa de contingência",
+            "Dados",
+            "Status",
+            "Fonte",
+        ):
+            self.assertIn(label, APP_JS)
+        self.assertIn('fallbackDataset: "fixed-income-performance"', APP_JS)
+        self.assertIn("dataStatus: fixedResult.meta.status", APP_JS)
+
+    def test_newer_dataset_supersedes_stale_manifest_warnings(self):
+        self.assertIn("function payloadIsNewerThanManifest", APP_JS)
+        self.assertIn("function deriveDatasetStatus", APP_JS)
+        self.assertIn("const newerThanManifest = payloadIsNewerThanManifest(data, manifestEntry)", APP_JS)
+        self.assertIn("status: newerThanManifest", APP_JS)
+        self.assertRegex(APP_JS, r"issues:\s*newerThanManifest\s*\?\s*\[\]")
+
+    def test_raw_dataset_errors_are_not_rendered_publicly(self):
+        self.assertNotIn("Falha no arquivo local:", APP_JS)
+        self.assertNotIn("${fedPolicy._datasetMeta.error}", APP_JS)
+
+
+if __name__ == "__main__":
+    unittest.main()

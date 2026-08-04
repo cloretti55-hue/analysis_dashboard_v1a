@@ -1,13 +1,12 @@
 {
   "schemaVersion": 1,
   "environment": "labs",
-  "generatedAt": "2026-08-04T22:10:20+00:00",
+  "generatedAt": "2026-08-04T22:23:28+00:00",
   "summary": {
     "datasetCount": 11,
     "statusCounts": {
       "manual": 2,
-      "ok": 8,
-      "partial": 1
+      "ok": 9
     },
     "blockingErrorCount": 0
   },
@@ -206,7 +205,7 @@
       "id": "etf-geography",
       "path": "data/etf-geography.json",
       "kind": "generated",
-      "status": "partial",
+      "status": "ok",
       "asOf": "2026-06-30",
       "maxAgeDays": 45,
       "consumer": [
@@ -214,19 +213,12 @@
       ],
       "producer": "scripts/update-etf-geography.py",
       "workflow": ".github/workflows/update-etf-geography.yml",
-      "sha256": "7c75e5c45eb1da1cc833ba1db318d775ba90cf282931068e2cdb3e112a92f375",
+      "sha256": "b64823a8393182677eed9ee978e56cea499005a31d0030f9b964ac93d5501f36",
       "recordCount": 13,
       "statusCounts": {
-        "ok": 10,
-        "stale": 3
+        "ok": 13
       },
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "geography_fallback",
-          "message": "3 instrument(s) use fallback geography"
-        }
-      ]
+      "issues": []
     }
   ]
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
   "asOf": "2026-06-30",
-  "generatedAt": "2026-08-04T22:10:20+00:00",
-  "methodology": "Pesos por país atualizados mensalmente a partir das páginas oficiais estruturadas da Vanguard e iShares e das lâminas oficiais da iShares US e SPDR. Em falha temporária, o último dado válido é preservado e marcado como stale.",
+  "generatedAt": "2026-08-04T22:23:28+00:00",
+  "methodology": "Pesos por país atualizados mensalmente a partir das lâminas oficiais da Vanguard, iShares US e SPDR e das páginas oficiais estruturadas da iShares UCITS. Em falha temporária, o último dado válido é preservado e marcado como stale.",
   "instruments": {
     "EIMI": {
       "weights": [
@@ -342,30 +342,30 @@
         ],
         [
           "Reino Unido",
-          12.0
+          10.9
         ],
         [
           "Canadá",
-          9.0
+          10.5
         ],
         [
-          "França",
-          8.0
+          "Coreia do Sul",
+          10.2
         ],
         [
           "Suíça",
-          7.5
+          6.9
         ],
         [
-          "Alemanha",
-          7.0
+          "França",
+          6.9
         ]
       ],
+      "asOf": "2026-06-30",
       "source": "Vanguard",
-      "sourceUrl": "https://investor.vanguard.com/investment-products/etfs/profile/vea",
-      "status": "stale",
-      "error": null,
-      "refreshError": "JSON mensal da Vanguard não encontrado"
+      "sourceUrl": "https://institutional.vanguard.com/iippdf/pdfs/FS936.pdf",
+      "status": "ok",
+      "refreshError": null
     },
     "VGK": {
       "weights": [
@@ -396,42 +396,42 @@
       ],
       "asOf": "2026-06-30",
       "source": "Vanguard",
-      "sourceUrl": "https://investor.vanguard.com/investment-products/etfs/profile/vgk",
-      "status": "stale",
-      "refreshError": "JSON mensal da Vanguard não encontrado"
+      "sourceUrl": "https://institutional.vanguard.com/iippdf/pdfs/FS963.pdf",
+      "status": "ok",
+      "refreshError": null
     },
     "VWO": {
       "weights": [
         [
           "Taiwan",
-          29.0
+          34.3
         ],
         [
           "China",
-          29.0
+          25.6
         ],
         [
           "Índia",
-          19.0
+          16.5
         ],
         [
           "Brasil",
-          4.0
-        ],
-        [
-          "Arábia Saudita",
-          3.0
+          4.1
         ],
         [
           "África do Sul",
-          3.0
+          3.6
+        ],
+        [
+          "Arábia Saudita",
+          3.1
         ]
       ],
+      "asOf": "2026-06-30",
       "source": "Vanguard",
-      "sourceUrl": "https://investor.vanguard.com/investment-products/etfs/profile/vwo",
-      "status": "stale",
-      "error": null,
-      "refreshError": "JSON mensal da Vanguard não encontrado"
+      "sourceUrl": "https://institutional.vanguard.com/iippdf/pdfs/FS964.pdf",
+      "status": "ok",
+      "refreshError": null
     }
   }
 }

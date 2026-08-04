@@ -5149,13 +5149,6 @@
           "main",
           { className: "equity-layout work-surface" },
           filter,
-          React.createElement(
-            "section",
-            { className: "dataset-status-stack", "aria-label": "Estado das bases de valuation" },
-            React.createElement(DatasetStatusLine, { result: valuationResults.equity, label: "Valuation relativo" }),
-            React.createElement(DatasetStatusLine, { result: valuationResults.sp500, label: "S&P 500" }),
-            React.createElement(DatasetStatusLine, { result: equityView === "broad" ? valuationResults.history : valuationResults.mag7, label: equityView === "broad" ? "Histórico de P/E" : "Magnificent 7" })
-          ),
           equityView === "broad" ? broadView : megaView
         );
       }

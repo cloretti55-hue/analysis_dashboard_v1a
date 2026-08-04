@@ -1,37 +1,37 @@
 {
   "version": 2,
   "asOf": "2026-06-30",
-  "generatedAt": "2026-08-04T16:24:26+00:00",
+  "generatedAt": "2026-08-04T22:10:20+00:00",
   "methodology": "Pesos por país atualizados mensalmente a partir das páginas oficiais estruturadas da Vanguard e iShares e das lâminas oficiais da iShares US e SPDR. Em falha temporária, o último dado válido é preservado e marcado como stale.",
   "instruments": {
     "EIMI": {
       "weights": [
         [
           "Taiwan",
-          26.2
+          26.36
         ],
         [
           "China",
-          19.85
+          20.14
         ],
         [
           "Coreia do Sul",
-          19.41
+          18.39
         ],
         [
           "Índia",
-          12.86
+          13.12
         ],
         [
           "Outros",
-          5.57
+          5.61
         ],
         [
           "Brasil",
-          3.6
+          3.62
         ]
       ],
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-03",
       "source": "iShares UCITS",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/264659/ishares-core-msci-em-imi-ucits-etf",
       "status": "ok",
@@ -239,30 +239,30 @@
       "weights": [
         [
           "Reino Unido",
-          22.48
+          22.3
         ],
         [
           "França",
-          15.18
+          15.3
         ],
         [
           "Suíça",
-          14.37
+          14.3
         ],
         [
           "Alemanha",
-          13.53
+          13.65
         ],
         [
           "Holanda",
-          8.7
+          8.67
         ],
         [
           "Espanha",
-          6.12
+          6.16
         ]
       ],
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-03",
       "source": "iShares UCITS",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251861/ishares-msci-europe-ucits-etf-inc-fund",
       "status": "ok",
@@ -397,8 +397,8 @@
       "asOf": "2026-06-30",
       "source": "Vanguard",
       "sourceUrl": "https://investor.vanguard.com/investment-products/etfs/profile/vgk",
-      "status": "ok",
-      "refreshError": null
+      "status": "stale",
+      "refreshError": "JSON mensal da Vanguard não encontrado"
     },
     "VWO": {
       "weights": [

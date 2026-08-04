@@ -2,7 +2,7 @@
   "version": 1,
   "asOf": "2026-08-04",
   "oldestComponentAsOf": "2026-07-31",
-  "generatedAt": "2026-08-04T11:11:17+00:00",
+  "generatedAt": "2026-08-04T11:17:53+00:00",
   "source": "Fixed income instruments from the ETF performance pipeline; benchmark is accrued Fed Funds from FRED DFF.",
   "methodology": "Return metrics use adjusted close from Yahoo Finance chart data when available. Charts use accrued Fed Funds from FRED DFF as a cash benchmark. A prior valid instrument may be retained and marked stale when refresh fails.",
   "instruments": [
@@ -20,9 +20,9 @@
       "valuation": null,
       "status": "ok",
       "asOf": "2026-08-04",
-      "lastClose": 121.32,
-      "returnYtdPct": 2.05,
-      "return1yPct": 3.84,
+      "lastClose": 121.34,
+      "returnYtdPct": 2.07,
+      "return1yPct": 3.86,
       "return3yAnnPct": 4.64,
       "return5yAnnPct": 3.51,
       "vol1yAnnPct": 0.33,
@@ -933,12 +933,12 @@
           },
           {
             "date": "2026-08-04",
-            "etf": 114.54,
+            "etf": 114.56,
             "cash": 114.29
           }
         ]
       },
-      "correlation1yVsCash": -0.06
+      "correlation1yVsCash": -0.13
     },
     {
       "ticker": "IBTA",
@@ -959,11 +959,11 @@
       },
       "status": "ok",
       "asOf": "2026-08-04",
-      "lastClose": 5.96,
-      "returnYtdPct": 0.81,
-      "return1yPct": 2.76,
-      "return3yAnnPct": 4.27,
-      "return5yAnnPct": 1.93,
+      "lastClose": 5.962,
+      "returnYtdPct": 0.85,
+      "return1yPct": 2.79,
+      "return3yAnnPct": 4.28,
+      "return5yAnnPct": 1.94,
       "vol1yAnnPct": 1.18,
       "maxDrawdown1yPct": -0.74,
       "benchmarkStatus": "stale",
@@ -1872,12 +1872,12 @@
           },
           {
             "date": "2026-08-04",
-            "etf": 113.33,
+            "etf": 113.37,
             "cash": 114.29
           }
         ]
       },
-      "correlation1yVsCash": -0.01
+      "correlation1yVsCash": -0.04
     },
     {
       "ticker": "CBU7",
@@ -1898,11 +1898,11 @@
       },
       "status": "ok",
       "asOf": "2026-08-04",
-      "lastClose": 142.515,
-      "returnYtdPct": -0.44,
-      "return1yPct": 1.41,
-      "return3yAnnPct": 3.9,
-      "return5yAnnPct": 0.21,
+      "lastClose": 142.605,
+      "returnYtdPct": -0.37,
+      "return1yPct": 1.47,
+      "return3yAnnPct": 3.92,
+      "return5yAnnPct": 0.23,
       "vol1yAnnPct": 2.88,
       "maxDrawdown1yPct": -2.5,
       "benchmarkStatus": "stale",
@@ -2811,12 +2811,12 @@
           },
           {
             "date": "2026-08-04",
-            "etf": 112.13,
+            "etf": 112.2,
             "cash": 114.29
           }
         ]
       },
-      "correlation1yVsCash": 0.12
+      "correlation1yVsCash": 0.09
     },
     {
       "ticker": "IBTM",
@@ -3185,7 +3185,7 @@
           },
           {
             "date": "2024-09-11",
-            "etf": 106.37,
+            "etf": 106.36,
             "cash": 105.92
           },
           {
@@ -3776,11 +3776,11 @@
       },
       "status": "ok",
       "asOf": "2026-08-04",
-      "lastClose": 4.4495,
-      "returnYtdPct": -3.16,
-      "return1yPct": -2.12,
-      "return3yAnnPct": -0.77,
-      "return5yAnnPct": -8.12,
+      "lastClose": 4.444,
+      "returnYtdPct": -3.28,
+      "return1yPct": -2.24,
+      "return3yAnnPct": -0.81,
+      "return5yAnnPct": -8.14,
       "vol1yAnnPct": 9.51,
       "maxDrawdown1yPct": -7.78,
       "benchmarkStatus": "stale",
@@ -4689,12 +4689,12 @@
           },
           {
             "date": "2026-08-04",
-            "etf": 97.72,
+            "etf": 97.6,
             "cash": 114.29
           }
         ]
       },
-      "correlation1yVsCash": -0.12
+      "correlation1yVsCash": -0.1
     },
     {
       "ticker": "TIP5",
@@ -8471,10 +8471,10 @@
       },
       "status": "ok",
       "asOf": "2026-08-04",
-      "lastClose": 7.512,
-      "returnYtdPct": 1.84,
-      "return1yPct": 5.67,
-      "return3yAnnPct": 8.13,
+      "lastClose": 7.511,
+      "returnYtdPct": 1.83,
+      "return1yPct": 5.65,
+      "return3yAnnPct": 8.12,
       "return5yAnnPct": 3.87,
       "vol1yAnnPct": 3.67,
       "maxDrawdown1yPct": -2.82,
@@ -9384,7 +9384,7 @@
           },
           {
             "date": "2026-08-04",
-            "etf": 126.36,
+            "etf": 126.34,
             "cash": 114.29
           }
         ]

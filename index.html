@@ -8012,12 +8012,17 @@
             React.createElement(
               "article",
               { className: "panel mobile-summary-card" },
-              React.createElement("h2", null, `Fed Funds ${fedPolicy.marketProbability.label}`),
+              React.createElement("h2", null, "Fed Funds atual"),
               React.createElement("strong", null, fedPolicy.targetRange.label),
               React.createElement(
                 "p",
                 null,
-                `Dados de ${formatDatePtBr(fedPolicy.targetRange.asOf)} · Fonte: ${fedPolicy.source || fedPolicy._datasetMeta?.source || "n/d"} · ${DATASET_STATUS_LABELS[fedPolicy._datasetMeta?.status] || fedPolicy._datasetMeta?.status || "Atual"}`
+                `Faixa definida em ${formatDatePtBr(fedPolicy.targetRange.asOf)} · Fonte: ${fedPolicy.source || fedPolicy._datasetMeta?.source || "n/d"} · ${DATASET_STATUS_LABELS[fedPolicy._datasetMeta?.status] || fedPolicy._datasetMeta?.status || "Atual"}`
+              ),
+              React.createElement(
+                "p",
+                null,
+                `Probabilidades para ${fedPolicy.marketProbability.label} · Dados de ${formatDatePtBr(fedPolicy.marketProbability.asOf)}`
               ),
               React.createElement(
                 "div",
@@ -8413,12 +8418,17 @@
                 React.createElement(
                   "article",
                   { className: "kpi panel" },
-                  React.createElement("span", null, `Fed Funds (${fedPolicy.marketProbability.label})`),
+                  React.createElement("span", null, "Fed Funds atual"),
                   React.createElement("strong", null, fedPolicy.targetRange.label),
                   React.createElement(
                     "p",
                     null,
-                    `Dados de ${formatDatePtBr(fedPolicy.targetRange.asOf)} · Fonte: ${fedPolicy.source || fedPolicy._datasetMeta?.source || "n/d"} · ${DATASET_STATUS_LABELS[fedPolicy._datasetMeta?.status] || fedPolicy._datasetMeta?.status || "Atual"}`
+                    `Faixa definida em ${formatDatePtBr(fedPolicy.targetRange.asOf)} · Fonte: ${fedPolicy.source || fedPolicy._datasetMeta?.source || "n/d"} · ${DATASET_STATUS_LABELS[fedPolicy._datasetMeta?.status] || fedPolicy._datasetMeta?.status || "Atual"}`
+                  ),
+                  React.createElement(
+                    "p",
+                    null,
+                    `Probabilidades para ${fedPolicy.marketProbability.label} · Dados de ${formatDatePtBr(fedPolicy.marketProbability.asOf)}`
                   ),
                   React.createElement(
                     "div",

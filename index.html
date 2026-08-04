@@ -3171,11 +3171,6 @@
         color: var(--negative);
       }
 
-      .dataset-status-message {
-        flex-basis: 100%;
-        color: var(--negative);
-      }
-
       .satellite-list {
         display: grid;
         gap: 8px;
@@ -4185,7 +4180,7 @@
         manual: "Manual",
         error: "Erro",
         unavailable: "Indisponível",
-        unknown: "Sem manifesto",
+        unknown: "Disponível",
       };
 
       function DatasetStatusLine({ result, label }) {
@@ -4200,18 +4195,18 @@
 
         const meta = result.meta || {};
         const status = result.ok ? (meta.status || "unknown") : "unavailable";
-        const issue = meta.issues?.[0]?.message;
-        const errorMessage = !result.ok ? result.error?.message : null;
+        const publicSource = meta.id === "etf-performance"
+          ? "Yahoo Finance"
+          : meta.id === "fixed-income-performance"
+          ? "Yahoo Finance e Federal Reserve (FRED)"
+          : meta.source;
         return React.createElement(
           "div",
           { className: "dataset-status-line" },
           React.createElement("strong", null, label || meta.id),
           React.createElement("span", { className: "dataset-status-badge", "data-status": status }, DATASET_STATUS_LABELS[status] || status),
           meta.asOf ? React.createElement("span", null, `Dados de ${formatDatePtBr(meta.asOf)}`) : null,
-          meta.source ? React.createElement("span", null, `Fonte: ${meta.source}`) : null,
-          errorMessage || issue
-            ? React.createElement("span", { className: "dataset-status-message" }, formatDatesInText(errorMessage || issue))
-            : null
+          publicSource ? React.createElement("span", null, `Fonte: ${publicSource}`) : null
         );
       }
 
@@ -5694,9 +5689,11 @@
               "div",
               { className: "dataset-status-stack", "aria-label": "Proveniência do Data Lab" },
               React.createElement(DatasetStatusLine, { result: performanceResult, label: "Base principal" }),
-              React.createElement(DatasetStatusLine, { result: fixedIncomeResult, label: "Renda fixa de contingência" })
+              performanceResult?.ok && performanceResult.meta?.status === "ok"
+                ? null
+                : React.createElement(DatasetStatusLine, { result: fixedIncomeResult, label: "Renda fixa de contingência" })
             ),
-            error ? React.createElement("p", { className: "data-note" }, `Não foi possível carregar data/etf-performance.json: ${error}`) : null,
+            error ? React.createElement("p", { className: "data-note" }, "Dados temporariamente indisponíveis. Tente novamente mais tarde.") : null,
             !data && !error ? React.createElement("p", { className: "data-note" }, "Carregando dados...") : null,
             React.createElement(
               "div",

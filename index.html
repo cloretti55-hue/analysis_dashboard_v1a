@@ -448,6 +448,10 @@
         background: #07111d;
       }
 
+      .theme-image-card.is-compact img {
+        height: clamp(160px, 20vw, 260px);
+      }
+
       .theme-image-caption {
         padding: 14px 16px;
       }
@@ -521,8 +525,10 @@
       }
 
       .image-lightbox img {
+        display: block;
         width: 100%;
         height: auto;
+        margin: 0 auto;
         object-fit: initial;
         border-radius: 8px;
         background: #fff;
@@ -617,6 +623,10 @@
 
         .theme-image-card.is-tall img {
           height: 440px;
+        }
+
+        .theme-image-card.is-compact img {
+          height: 200px;
         }
 
         .image-lightbox {
@@ -5602,6 +5612,63 @@
 
       const THEME_BRIEFINGS = [
         {
+          key: "gold-commodities",
+          date: "04/08",
+          label: "Ouro e commodities",
+          title: "Ouro, bancos centrais e função das commodities",
+          summary: "Ouro como reserva monetária, bancos centrais como demanda estrutural, investidores como impulso marginal e commodities com funções econômicas diferentes.",
+          tags: ["Ouro", "Commodities", "Bancos centrais"],
+          images: [
+            {
+              src: "assets/themes/equities-vs-commodities.png",
+              title: "Ações vs. commodities: motores de precificação",
+              comment: "Ações tendem a precificar crescimento, lucros e geração de caixa; commodities refletem escassez, oferta, demanda, estoques e choques. A distinção ajuda a entender por que as duas classes cumprem funções diferentes na carteira.",
+            },
+            {
+              src: "assets/themes/gold-central-banks-2022-2026.png",
+              title: "Ouro e bancos centrais: demanda oficial",
+              comment: "A demanda oficial por ouro permanece historicamente elevada desde 2022. A leitura separa compras reportadas, atividade não divulgada e limites de atribuir todo o total global a países específicos.",
+            },
+            {
+              src: "assets/themes/gold-supply-demand-price-2025-2026.png",
+              title: "Oferta, demanda e formação do preço",
+              comment: "Em 2025, o impulso marginal veio mais dos investidores, especialmente ETFs, enquanto bancos centrais compraram menos que em 2024, mas seguiram sustentando um piso estrutural para o mercado.",
+            },
+            {
+              src: "assets/themes/gold-vs-commodities-functions.png",
+              title: "Ouro vs. outras commodities: função econômica",
+              comment: "Nem toda commodity é hedge. Ouro responde principalmente a riscos monetários e sistêmicos; energia, metais industriais e alimentos protegem choques diferentes e podem se comportar mal em recessões.",
+            },
+            {
+              src: "assets/themes/gold-vs-commodities-etfs.png",
+              title: "Commodities via ETFs: implementação",
+              comment: "Exposição física, futuros e ações de produtoras não são equivalentes. Para medir a commodity, o veículo precisa capturar o preço físico ou futuro; para investir nas empresas, o risco passa a ser também operacional e acionário.",
+            },
+            {
+              src: "assets/themes/gold-silver-ratio2.png",
+              title: "Ouro vs. prata: o que o ratio mede",
+              comment: "O Gold/Silver Ratio é uma leitura de liderança relativa e regime, não uma régua fixa de valuation. A média depende da janela, dos fundamentos e da estabilidade estatística da relação.",
+            },
+            {
+              src: "assets/themes/commodities-specialized-etfs.png",
+              title: "Commodities: ETFs especializados",
+              comment: "Além das commodities principais, existem nichos como platina, paládio, gás natural, urânio, lítio, terras raras, minério de ferro, gado e água. A leitura separa exposição física, futuros e ações ligadas ao tema.",
+            },
+            {
+              src: "assets/themes/commodities-sp500-10y.png",
+              title: "Commodities e S&P 500: desempenho relativo",
+              layout: "compact",
+              comment: "O gráfico compara commodities, S&P 500 e CPI em base 100 e eixo logarítmico. A mensagem central é que commodities não se movem como um bloco único: correlação, volatilidade e regime importam mais do que o rótulo da classe.",
+            },
+            {
+              src: "assets/themes/commodities-correlation-matrix-2016-2026.png",
+              title: "Matriz de correlação: commodities e S&P 500",
+              layout: "compact",
+              comment: "A matriz mostra correlações semanais entre ouro, prata, petróleo, cobre, agricultura, commodities amplas e S&P 500. A leitura reforça que diversificação depende da relação entre ativos, não apenas do nome da classe.",
+            },
+          ],
+        },
+        {
           key: "ai-stress",
           date: "27/07",
           label: "IA Stress",
@@ -5935,7 +6002,7 @@
         };
 
         const adjustImageZoom = (delta) => {
-          setImageZoom((value) => Math.min(2.5, Math.max(1, Number((value + delta).toFixed(2)))));
+          setImageZoom((value) => Math.min(2.5, Math.max(0.5, Number((value + delta).toFixed(2)))));
         };
 
         return React.createElement(
@@ -6007,7 +6074,7 @@
                         React.createElement(
                           "button",
                           {
-                            className: `panel theme-image-card ${image.layout === "tall" ? "is-tall" : ""}`,
+                            className: `panel theme-image-card ${image.layout === "tall" ? "is-tall" : ""} ${image.layout === "compact" ? "is-compact" : ""}`,
                             key: image.src,
                             type: "button",
                             onClick: () => openImage(image, index),
@@ -6055,7 +6122,7 @@
                       React.createElement(
                         "div",
                         { className: "image-zoom-controls", "aria-label": "Controles de zoom da imagem" },
-                        React.createElement("button", { type: "button", onClick: () => adjustImageZoom(-0.25), disabled: imageZoom <= 1 }, "-"),
+                        React.createElement("button", { type: "button", onClick: () => adjustImageZoom(-0.25), disabled: imageZoom <= 0.5 }, "-"),
                         React.createElement("span", null, `${Math.round(imageZoom * 100)}%`),
                         React.createElement("button", { type: "button", onClick: () => adjustImageZoom(0.25), disabled: imageZoom >= 2.5 }, "+"),
                         React.createElement("button", { type: "button", onClick: () => setImageZoom(1) }, "100%")

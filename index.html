@@ -4026,8 +4026,14 @@
 
       function formatDatePtBr(dateText) {
         if (!dateText) return "";
-        const [year, month, day] = dateText.split("-");
-        return year && month && day ? `${day}/${month}/${year}` : dateText;
+        const match = String(dateText).match(/^(\d{4})-(\d{2})-(\d{2})/);
+        return match ? `${match[3]}/${match[2]}/${match[1]}` : String(dateText);
+      }
+
+      function formatDatesInText(text) {
+        return text == null
+          ? ""
+          : String(text).replace(/\b(\d{4})-(\d{2})-(\d{2})\b/g, (_, year, month, day) => `${day}/${month}/${year}`);
       }
 
       const DATASET_DEFINITIONS = {
@@ -4204,7 +4210,7 @@
           meta.asOf ? React.createElement("span", null, `Dados de ${formatDatePtBr(meta.asOf)}`) : null,
           meta.source ? React.createElement("span", null, `Fonte: ${meta.source}`) : null,
           errorMessage || issue
-            ? React.createElement("span", { className: "dataset-status-message" }, errorMessage || issue)
+            ? React.createElement("span", { className: "dataset-status-message" }, formatDatesInText(errorMessage || issue))
             : null
         );
       }
@@ -4669,7 +4675,7 @@
           .filter((item) => item.name !== "Magnificent 7")
           .map((item) => [`Prêmio vs ${item.name.replace("S&P 500 Information Technology", "Tecnologia").replace("S&P 400 ", "").replace("S&P 600 ", "")}`, `+${premium(item.value)}%`, item.tone]);
         const sourceText = valuationData?.source
-          ? `Base: ${valuationData.source}, ${valuationData.asOf || "data não informada"}. Valores aproximados; gráfico próprio.`
+          ? `Base: ${valuationData.source}, ${formatDatePtBr(valuationData.asOf) || "data não informada"}. Valores aproximados; gráfico próprio.`
           : "Base: Yardeni Research, LSEG Datastream e S&P, 22/06/26. Valores aproximados; gráfico próprio.";
 
         return React.createElement(
@@ -4735,7 +4741,7 @@
           };
         });
         const sourceText = data?.asOf
-          ? `Base: ${data.source}, ${data.asOf}. Provedores podem divergir por data, universo e metodologia.`
+          ? `Base: ${data.source}, ${formatDatePtBr(data.asOf)}. Provedores podem divergir por data, universo e metodologia.`
           : "Base FactSet ainda não preenchida; usando S&P 500 do valuation manual como referência temporária.";
 
         return React.createElement(
@@ -5087,8 +5093,8 @@
         const activeMag7Valuation = mag7ValuationData?.companies?.length ? mag7ValuationData : MAG7_VALUATION_FALLBACK;
         const mag7TableRows = activeMag7Valuation.companies;
         const mag7SourceText = activeMag7Valuation.status === "ok"
-          ? `Base: ${activeMag7Valuation.source}, ${activeMag7Valuation.asOf}. P/E TTM e Forward P/E por empresa; agregado calculado pelo dashboard. ${FORWARD_PE_METHOD_NOTE}`
-          : `Snapshot local: ${activeMag7Valuation.source}, ${activeMag7Valuation.asOf}. Atualização automática entra quando data/mag7-valuation.json carregar. ${FORWARD_PE_METHOD_NOTE}`;
+          ? `Base: ${activeMag7Valuation.source}, ${formatDatePtBr(activeMag7Valuation.asOf)}. P/E TTM e Forward P/E por empresa; agregado calculado pelo dashboard. ${FORWARD_PE_METHOD_NOTE}`
+          : `Snapshot local: ${activeMag7Valuation.source}, ${formatDatePtBr(activeMag7Valuation.asOf)}. Atualização automática entra quando data/mag7-valuation.json carregar. ${FORWARD_PE_METHOD_NOTE}`;
 
         const megaView = React.createElement(
           React.Fragment,
@@ -5683,7 +5689,7 @@
                 React.createElement("span", { className: "control-title" }, "Base automatizada"),
                 React.createElement("h2", null, "ETFs monitorados")
               ),
-              React.createElement("span", { className: "mini-label" }, data?.asOf ? `Atualizado em ${data.asOf}` : "JSON")
+              React.createElement("span", { className: "mini-label" }, data?.asOf ? `Atualizado em ${formatDatePtBr(data.asOf)}` : "JSON")
             ),
             React.createElement(
               "div",
@@ -5764,8 +5770,8 @@
                     React.createElement("span", null, "Moeda", React.createElement("b", null, active.currency || "n/d")),
                     activeBenchmarkLabel ? React.createElement("span", null, "Benchmark", React.createElement("b", null, activeBenchmarkLabel)) : null,
                     activeReferenceLabel ? React.createElement("span", null, "Referência", React.createElement("b", null, activeReferenceLabel)) : null,
-                    active.assetClass === "equity" && dataLabGroupFor(active) !== "Hedge" && active.valuation?.source ? React.createElement("span", null, "P/E", React.createElement("b", null, active.valuation.asOf || "manual")) : null,
-                    active.performanceChart?.startDate ? React.createElement("span", null, "Histórico", React.createElement("b", null, active.performanceChart.startDate)) : null,
+                    active.assetClass === "equity" && dataLabGroupFor(active) !== "Hedge" && active.valuation?.source ? React.createElement("span", null, "P/E", React.createElement("b", null, formatDatePtBr(active.valuation.asOf) || "manual")) : null,
+                    active.performanceChart?.startDate ? React.createElement("span", null, "Histórico", React.createElement("b", null, formatDatePtBr(active.performanceChart.startDate))) : null,
                     React.createElement("span", null, "Dados", React.createElement("b", null, active.dataAsOf ? formatDatePtBr(active.dataAsOf) : "n/d")),
                     React.createElement("span", null, "Status", React.createElement("b", null, DATASET_STATUS_LABELS[active.dataStatus || active.status] || active.dataStatus || active.status || "n/d"))
                   ),

@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "environment": "labs",
-  "generatedAt": "2026-07-30T13:13:55+00:00",
+  "generatedAt": "2026-08-04T10:39:21+00:00",
   "summary": {
     "datasetCount": 11,
     "statusCounts": {
       "manual": 2,
-      "ok": 3,
-      "partial": 2,
-      "stale": 4
+      "ok": 7,
+      "partial": 1,
+      "stale": 1
     },
     "blockingErrorCount": 0
   },
@@ -17,24 +17,18 @@
       "id": "curve-us",
       "path": "data/curve-us.json",
       "kind": "generated",
-      "status": "stale",
-      "asOf": "2026-07-29",
+      "status": "ok",
+      "asOf": "2026-08-03",
       "maxAgeDays": 5,
       "consumer": [
         "Yield Curves"
       ],
       "producer": "scripts/update-us-yield-curves.py",
       "workflow": ".github/workflows/update-us-yield-curves.yml",
-      "sha256": "bea39e3e14ef033de8c0160bd5a3a5e2f7ec8a6e9d8f7539e698dc2c345271d3",
+      "sha256": "d48ee0f40988a2872c08eac0eb6e497f26aad8e28bb6f91a5fba2e5295b3c514",
       "maturities": 5,
       "curveCount": 3,
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "stale_dataset",
-          "message": "Dataset asOf=2026-07-29 exceeds maxAgeDays=5"
-        }
-      ]
+      "issues": []
     },
     {
       "id": "fed-policy",
@@ -91,36 +85,30 @@
       "id": "sp500-valuation",
       "path": "data/sp500-valuation.json",
       "kind": "generated",
-      "status": "stale",
-      "asOf": "2026-07-17",
+      "status": "ok",
+      "asOf": "2026-07-24",
       "maxAgeDays": 14,
       "consumer": [
         "Equity Valuation"
       ],
       "producer": "scripts/update-sp500-valuation.py",
       "workflow": ".github/workflows/update-sp500-valuation.yml",
-      "sha256": "9491c5de181ace76112285c497743db5cfb7087594ce7b21d521cc8ffee5d47d",
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "stale_dataset",
-          "message": "Dataset asOf=2026-07-17 exceeds maxAgeDays=14"
-        }
-      ]
+      "sha256": "3f7342d3491d126272fd7583ec49a22757ffa9c2c81fed7217a983c611178f3d",
+      "issues": []
     },
     {
       "id": "sp500-pe-history",
       "path": "data/sp500-pe-history.json",
       "kind": "generated",
       "status": "ok",
-      "asOf": "2026-07-23",
+      "asOf": "2026-07-31",
       "maxAgeDays": 45,
       "consumer": [
         "Equity Valuation"
       ],
       "producer": "scripts/update-sp500-pe-history.py",
       "workflow": ".github/workflows/update-sp500-pe-history.yml",
-      "sha256": "7d7e9a8bcb6c2373328330ed0c6f14026d20dd19f53387912a2cc2e4bb3bb45e",
+      "sha256": "38e88587b06c837ff234e76f3a5102b215d5ee7b2459835de9602f26d22ccbf5",
       "recordCount": 1866,
       "yearEndCount": 156,
       "issues": []
@@ -130,14 +118,14 @@
       "path": "data/mag7-valuation.json",
       "kind": "generated",
       "status": "ok",
-      "asOf": "2026-07-30",
+      "asOf": "2026-08-03",
       "maxAgeDays": 5,
       "consumer": [
         "Equity Valuation"
       ],
       "producer": "scripts/update-mag7-valuation.py",
       "workflow": ".github/workflows/update-mag7-valuation.yml",
-      "sha256": "078437cd1ee881ab5b52bbdf0c85e0472ef0bbf75743f69893e7dcb5587f3f80",
+      "sha256": "ab5548f98386a354d2e7f6bcf59de15af3e98d34ba966c6e1b0e09fcc5d19b15",
       "recordCount": 7,
       "issues": []
     },
@@ -169,27 +157,27 @@
       "id": "etf-performance",
       "path": "data/etf-performance.json",
       "kind": "generated",
-      "status": "partial",
-      "asOf": "2026-07-30",
+      "status": "ok",
+      "asOf": "2026-08-04",
       "maxAgeDays": 5,
       "consumer": [
         "Data Lab"
       ],
       "producer": "scripts/update-etf-performance.py",
       "workflow": ".github/workflows/update-etf-performance.yml",
-      "sha256": "99802d33bd2288c3efc16b218f53466f1caee7ed40fe741e1e5fd2abca1b95ae",
+      "sha256": "e6fb73f737934c6199c770adbc4f0a892f25de02db097ac571fc878c2b99b69b",
       "recordCount": 100,
-      "chartCoverage": 0.89,
+      "chartCoverage": 1.0,
       "statusCounts": {
-        "error": 11,
-        "ok": 89
+        "ok": 100
       },
       "staleCount": 0,
+      "staleBenchmarkCount": 11,
       "issues": [
         {
           "severity": "warning",
-          "code": "instrument_errors",
-          "message": "11 instrument(s) failed refresh"
+          "code": "stale_benchmarks",
+          "message": "11 instrument(s) use a prior benchmark series"
         }
       ]
     },
@@ -197,26 +185,27 @@
       "id": "fixed-income-performance",
       "path": "data/fixed-income-performance.json",
       "kind": "generated_fallback",
-      "status": "stale",
-      "asOf": "2026-07-23",
+      "status": "ok",
+      "asOf": "2026-08-04",
       "maxAgeDays": 5,
       "consumer": [
         "Data Lab"
       ],
       "producer": "scripts/update-etf-performance.py",
       "workflow": ".github/workflows/update-etf-performance.yml",
-      "sha256": "1891eb16707239e73412b27d045f30902e1bcc829ffe6b45ff52b83fff7a22ee",
+      "sha256": "77d98c23f96bb3bb99713339265c7c2c5fbfa19f17df55d6bcec08782f005be8",
       "recordCount": 11,
       "chartCoverage": 1.0,
       "statusCounts": {
         "ok": 11
       },
       "staleCount": 0,
+      "staleBenchmarkCount": 11,
       "issues": [
         {
           "severity": "warning",
-          "code": "stale_dataset",
-          "message": "Dataset asOf=2026-07-23 exceeds maxAgeDays=5"
+          "code": "stale_benchmarks",
+          "message": "11 instrument(s) use a prior benchmark series"
         }
       ]
     },
@@ -225,14 +214,14 @@
       "path": "data/etf-geography.json",
       "kind": "generated",
       "status": "partial",
-      "asOf": "2026-07-24",
+      "asOf": "2026-07-30",
       "maxAgeDays": 45,
       "consumer": [
         "ETFs"
       ],
       "producer": "scripts/update-etf-geography.py",
       "workflow": ".github/workflows/update-etf-geography.yml",
-      "sha256": "1b5f7a7536424922a2a3b2591039cea11ab541dca7e015bb53bfcc27439aa5e1",
+      "sha256": "eb6c1a61e619d00e275e619f735242367257092a1c37563059644abc4763f5fa",
       "recordCount": 13,
       "statusCounts": {
         "seed_fallback": 13

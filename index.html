@@ -4235,10 +4235,9 @@
         const state = meta.datasetStatus && meta.datasetStatus !== "ok"
           ? ` Estado: ${DATASET_STATUS_LABELS[meta.datasetStatus] || meta.datasetStatus}.`
           : "";
-        const error = meta.datasetError ? ` Falha no arquivo local: ${meta.datasetError}.` : "";
         return updatedAt
-          ? `${componentNote} Atualizado em ${updatedAt}. Base: ${meta.source || DEFAULT_CURVE_META.source}.${state}${error}`
-          : `${componentNote} Base: ${meta.source || DEFAULT_CURVE_META.source}.${state}${error}`;
+          ? `${componentNote} Atualizado em ${updatedAt}. Base: ${meta.source || DEFAULT_CURVE_META.source}.${state}`
+          : `${componentNote} Base: ${meta.source || DEFAULT_CURVE_META.source}.${state}`;
       }
 
       const DEFAULT_FED_POLICY = {
@@ -7663,7 +7662,6 @@
               React.createElement("span", { className: "detail-role" }, detail[0]),
               React.createElement("p", null, detail[1]),
               React.createElement("p", null, detail[2]),
-              React.createElement(DatasetStatusLine, { result: geoResult, label: "Composição geográfica" }),
               countryWeights
                 ? React.createElement(
                     "div",
@@ -8019,7 +8017,7 @@
               React.createElement(
                 "p",
                 null,
-                `Dados de ${formatDatePtBr(fedPolicy.targetRange.asOf)} · Fonte: ${fedPolicy.source || fedPolicy._datasetMeta?.source || "n/d"} · ${DATASET_STATUS_LABELS[fedPolicy._datasetMeta?.status] || fedPolicy._datasetMeta?.status || "Atual"}${fedPolicy._datasetMeta?.error ? ` · ${fedPolicy._datasetMeta.error}` : ""}`
+                `Dados de ${formatDatePtBr(fedPolicy.targetRange.asOf)} · Fonte: ${fedPolicy.source || fedPolicy._datasetMeta?.source || "n/d"} · ${DATASET_STATUS_LABELS[fedPolicy._datasetMeta?.status] || fedPolicy._datasetMeta?.status || "Atual"}`
               ),
               React.createElement(
                 "div",
@@ -8420,7 +8418,7 @@
                   React.createElement(
                     "p",
                     null,
-                    `Dados de ${formatDatePtBr(fedPolicy.targetRange.asOf)} · Fonte: ${fedPolicy.source || fedPolicy._datasetMeta?.source || "n/d"} · ${DATASET_STATUS_LABELS[fedPolicy._datasetMeta?.status] || fedPolicy._datasetMeta?.status || "Atual"}${fedPolicy._datasetMeta?.error ? ` · ${fedPolicy._datasetMeta.error}` : ""}`
+                    `Dados de ${formatDatePtBr(fedPolicy.targetRange.asOf)} · Fonte: ${fedPolicy.source || fedPolicy._datasetMeta?.source || "n/d"} · ${DATASET_STATUS_LABELS[fedPolicy._datasetMeta?.status] || fedPolicy._datasetMeta?.status || "Atual"}`
                   ),
                   React.createElement(
                     "div",

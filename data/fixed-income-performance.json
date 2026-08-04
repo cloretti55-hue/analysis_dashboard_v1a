@@ -2,7 +2,7 @@
   "version": 1,
   "asOf": "2026-08-04",
   "oldestComponentAsOf": "2026-07-31",
-  "generatedAt": "2026-08-04T11:17:53+00:00",
+  "generatedAt": "2026-08-04T11:39:43+00:00",
   "source": "Fixed income instruments from the ETF performance pipeline; benchmark is accrued Fed Funds from FRED DFF.",
   "methodology": "Return metrics use adjusted close from Yahoo Finance chart data when available. Charts use accrued Fed Funds from FRED DFF as a cash benchmark. A prior valid instrument may be retained and marked stale when refresh fails.",
   "instruments": [
@@ -17,7 +17,6 @@
       "quoteSymbol": "IB01.L",
       "benchmark": "Fed Funds accrued return",
       "compareToSp500": false,
-      "valuation": null,
       "status": "ok",
       "asOf": "2026-08-04",
       "lastClose": 121.34,
@@ -951,12 +950,6 @@
       "quoteSymbol": "IBTA.L",
       "benchmark": "Fed Funds accrued return",
       "compareToSp500": false,
-      "valuation": {
-        "peRatio": null,
-        "forwardPe": null,
-        "source": null,
-        "asOf": null
-      },
       "status": "ok",
       "asOf": "2026-08-04",
       "lastClose": 5.962,
@@ -1890,19 +1883,13 @@
       "quoteSymbol": "CBU7.L",
       "benchmark": "Fed Funds accrued return",
       "compareToSp500": false,
-      "valuation": {
-        "peRatio": null,
-        "forwardPe": null,
-        "source": null,
-        "asOf": null
-      },
       "status": "ok",
       "asOf": "2026-08-04",
-      "lastClose": 142.605,
-      "returnYtdPct": -0.37,
-      "return1yPct": 1.47,
+      "lastClose": 142.59,
+      "returnYtdPct": -0.38,
+      "return1yPct": 1.46,
       "return3yAnnPct": 3.92,
-      "return5yAnnPct": 0.23,
+      "return5yAnnPct": 0.22,
       "vol1yAnnPct": 2.88,
       "maxDrawdown1yPct": -2.5,
       "benchmarkStatus": "stale",
@@ -2811,12 +2798,12 @@
           },
           {
             "date": "2026-08-04",
-            "etf": 112.2,
+            "etf": 112.19,
             "cash": 114.29
           }
         ]
       },
-      "correlation1yVsCash": 0.09
+      "correlation1yVsCash": 0.1
     },
     {
       "ticker": "IBTM",
@@ -2829,20 +2816,14 @@
       "quoteSymbol": "IBTM.L",
       "benchmark": "Fed Funds accrued return",
       "compareToSp500": false,
-      "valuation": {
-        "peRatio": null,
-        "forwardPe": null,
-        "source": null,
-        "asOf": null
-      },
       "status": "ok",
       "asOf": "2026-08-04",
-      "lastClose": 125.73,
-      "returnYtdPct": -0.87,
-      "return1yPct": -0.27,
-      "return3yAnnPct": 1.39,
-      "return5yAnnPct": -0.92,
-      "vol1yAnnPct": 6.28,
+      "lastClose": 125.85,
+      "returnYtdPct": -0.77,
+      "return1yPct": -0.17,
+      "return3yAnnPct": 1.42,
+      "return5yAnnPct": -0.91,
+      "vol1yAnnPct": 6.29,
       "maxDrawdown1yPct": -5.58,
       "benchmarkStatus": "stale",
       "benchmarkError": "The read operation timed out",
@@ -3185,7 +3166,7 @@
           },
           {
             "date": "2024-09-11",
-            "etf": 106.36,
+            "etf": 106.37,
             "cash": 105.92
           },
           {
@@ -3625,7 +3606,7 @@
           },
           {
             "date": "2026-03-02",
-            "etf": 107.8,
+            "etf": 107.81,
             "cash": 112.67
           },
           {
@@ -3750,12 +3731,12 @@
           },
           {
             "date": "2026-08-04",
-            "etf": 104.22,
+            "etf": 104.32,
             "cash": 114.29
           }
         ]
       },
-      "correlation1yVsCash": -0.03
+      "correlation1yVsCash": -0.04
     },
     {
       "ticker": "DTLA",
@@ -3768,19 +3749,13 @@
       "quoteSymbol": "DTLA.L",
       "benchmark": "Fed Funds accrued return",
       "compareToSp500": false,
-      "valuation": {
-        "peRatio": null,
-        "forwardPe": null,
-        "source": null,
-        "asOf": null
-      },
       "status": "ok",
       "asOf": "2026-08-04",
-      "lastClose": 4.444,
-      "returnYtdPct": -3.28,
-      "return1yPct": -2.24,
-      "return3yAnnPct": -0.81,
-      "return5yAnnPct": -8.14,
+      "lastClose": 4.448,
+      "returnYtdPct": -3.19,
+      "return1yPct": -2.16,
+      "return3yAnnPct": -0.78,
+      "return5yAnnPct": -8.13,
       "vol1yAnnPct": 9.51,
       "maxDrawdown1yPct": -7.78,
       "benchmarkStatus": "stale",
@@ -4689,12 +4664,12 @@
           },
           {
             "date": "2026-08-04",
-            "etf": 97.6,
+            "etf": 97.68,
             "cash": 114.29
           }
         ]
       },
-      "correlation1yVsCash": -0.1
+      "correlation1yVsCash": -0.11
     },
     {
       "ticker": "TIP5",
@@ -4707,19 +4682,13 @@
       "quoteSymbol": "TIP5.L",
       "benchmark": "Fed Funds accrued return",
       "compareToSp500": false,
-      "valuation": {
-        "peRatio": null,
-        "forwardPe": null,
-        "source": null,
-        "asOf": null
-      },
       "status": "ok",
       "asOf": "2026-08-04",
-      "lastClose": 4.8875,
-      "returnYtdPct": 1.16,
-      "return1yPct": 2.26,
-      "return3yAnnPct": 4.21,
-      "return5yAnnPct": 2.58,
+      "lastClose": 4.897,
+      "returnYtdPct": 1.36,
+      "return1yPct": 2.46,
+      "return3yAnnPct": 4.28,
+      "return5yAnnPct": 2.62,
       "vol1yAnnPct": 3.9,
       "maxDrawdown1yPct": -3.02,
       "benchmarkStatus": "stale",
@@ -5628,12 +5597,12 @@
           },
           {
             "date": "2026-08-04",
-            "etf": 113.16,
+            "etf": 113.38,
             "cash": 114.29
           }
         ]
       },
-      "correlation1yVsCash": -0.02
+      "correlation1yVsCash": -0.06
     },
     {
       "ticker": "ITPS",
@@ -5646,19 +5615,13 @@
       "quoteSymbol": "ITPS.L",
       "benchmark": "Fed Funds accrued return",
       "compareToSp500": false,
-      "valuation": {
-        "peRatio": null,
-        "forwardPe": null,
-        "source": null,
-        "asOf": null
-      },
       "status": "ok",
       "asOf": "2026-08-04",
-      "lastClose": 190.58,
-      "returnYtdPct": 1.03,
-      "return1yPct": 0.44,
-      "return3yAnnPct": 1.98,
-      "return5yAnnPct": 0.89,
+      "lastClose": 190.613,
+      "returnYtdPct": 1.05,
+      "return1yPct": 0.46,
+      "return3yAnnPct": 1.99,
+      "return5yAnnPct": 0.9,
       "vol1yAnnPct": 6.15,
       "maxDrawdown1yPct": -5.26,
       "benchmarkStatus": "stale",
@@ -6567,7 +6530,7 @@
           },
           {
             "date": "2026-08-04",
-            "etf": 106.06,
+            "etf": 106.08,
             "cash": 114.29
           }
         ]
@@ -6585,12 +6548,6 @@
       "quoteSymbol": "ITPE.L",
       "benchmark": "Fed Funds accrued return",
       "compareToSp500": false,
-      "valuation": {
-        "peRatio": null,
-        "forwardPe": null,
-        "source": null,
-        "asOf": null
-      },
       "status": "ok",
       "asOf": "2026-07-31",
       "lastClose": 5.341,
@@ -7524,19 +7481,13 @@
       "quoteSymbol": "LQDA.L",
       "benchmark": "Fed Funds accrued return",
       "compareToSp500": false,
-      "valuation": {
-        "peRatio": null,
-        "forwardPe": null,
-        "source": null,
-        "asOf": null
-      },
       "status": "ok",
       "asOf": "2026-08-04",
-      "lastClose": 6.216,
-      "returnYtdPct": -1.11,
-      "return1yPct": 1.12,
-      "return3yAnnPct": 4.66,
-      "return5yAnnPct": -1.03,
+      "lastClose": 6.2141,
+      "returnYtdPct": -1.14,
+      "return1yPct": 1.09,
+      "return3yAnnPct": 4.65,
+      "return5yAnnPct": -1.04,
       "vol1yAnnPct": 5.6,
       "maxDrawdown1yPct": -3.45,
       "benchmarkStatus": "stale",
@@ -8445,12 +8396,12 @@
           },
           {
             "date": "2026-08-04",
-            "etf": 114.6,
+            "etf": 114.57,
             "cash": 114.29
           }
         ]
       },
-      "correlation1yVsCash": -0.11
+      "correlation1yVsCash": -0.1
     },
     {
       "ticker": "IHYA",
@@ -8463,20 +8414,14 @@
       "quoteSymbol": "IHYA.L",
       "benchmark": "Fed Funds accrued return",
       "compareToSp500": false,
-      "valuation": {
-        "peRatio": null,
-        "forwardPe": null,
-        "source": null,
-        "asOf": null
-      },
       "status": "ok",
       "asOf": "2026-08-04",
-      "lastClose": 7.511,
-      "returnYtdPct": 1.83,
-      "return1yPct": 5.65,
-      "return3yAnnPct": 8.12,
+      "lastClose": 7.509,
+      "returnYtdPct": 1.8,
+      "return1yPct": 5.63,
+      "return3yAnnPct": 8.11,
       "return5yAnnPct": 3.87,
-      "vol1yAnnPct": 3.67,
+      "vol1yAnnPct": 3.66,
       "maxDrawdown1yPct": -2.82,
       "benchmarkStatus": "stale",
       "benchmarkError": "The read operation timed out",
@@ -9384,12 +9329,12 @@
           },
           {
             "date": "2026-08-04",
-            "etf": 126.34,
+            "etf": 126.31,
             "cash": 114.29
           }
         ]
       },
-      "correlation1yVsCash": -0.15
+      "correlation1yVsCash": -0.14
     },
     {
       "ticker": "AGGU",
@@ -9402,12 +9347,6 @@
       "quoteSymbol": "AGGU.L",
       "benchmark": "Fed Funds accrued return",
       "compareToSp500": false,
-      "valuation": {
-        "peRatio": null,
-        "forwardPe": null,
-        "source": null,
-        "asOf": null
-      },
       "status": "ok",
       "asOf": "2026-08-04",
       "lastClose": 5.816,

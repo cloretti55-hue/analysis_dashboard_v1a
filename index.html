@@ -5979,6 +5979,29 @@
           return () => window.removeEventListener("popstate", syncThemeFromHistory);
         }, []);
 
+        useEffect(() => {
+          if (!expandedImage) return undefined;
+
+          const body = document.body;
+          const root = document.documentElement;
+          const previousBodyStyles = {
+            overflow: body.style.overflow,
+            paddingRight: body.style.paddingRight,
+          };
+          const previousRootOverflow = root.style.overflow;
+          const scrollbarWidth = window.innerWidth - root.clientWidth;
+
+          root.style.overflow = "hidden";
+          body.style.overflow = "hidden";
+          if (scrollbarWidth > 0) body.style.paddingRight = `${scrollbarWidth}px`;
+
+          return () => {
+            root.style.overflow = previousRootOverflow;
+            body.style.overflow = previousBodyStyles.overflow;
+            body.style.paddingRight = previousBodyStyles.paddingRight;
+          };
+        }, [expandedImage]);
+
         const selectTheme = (key) => {
           setSelectedTheme(key);
           setExpandedImage(null);

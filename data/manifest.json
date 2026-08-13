@@ -1,12 +1,13 @@
 {
   "schemaVersion": 1,
   "environment": "labs",
-  "generatedAt": "2026-08-12T22:08:49+00:00",
+  "generatedAt": "2026-08-13T12:10:30+00:00",
   "summary": {
     "datasetCount": 11,
     "statusCounts": {
       "manual": 2,
-      "ok": 9
+      "ok": 8,
+      "stale": 1
     },
     "blockingErrorCount": 0
   },
@@ -32,7 +33,7 @@
       "id": "fed-policy",
       "path": "data/fed-policy.json",
       "kind": "generated",
-      "status": "ok",
+      "status": "stale",
       "asOf": "2026-08-07",
       "maxAgeDays": 5,
       "consumer": [
@@ -41,7 +42,13 @@
       "producer": "scripts/update-fed-policy.py",
       "workflow": ".github/workflows/update-fed-policy.yml",
       "sha256": "be53ccabbe8aabc236b7d022a1ef4c018f76531eb3f08f88e6f56d71d0efb257",
-      "issues": []
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "stale_dataset",
+          "message": "Dataset asOf=2026-08-07 exceeds maxAgeDays=5"
+        }
+      ]
     },
     {
       "id": "equity-valuation",
@@ -150,14 +157,14 @@
       "path": "data/etf-performance.json",
       "kind": "generated",
       "status": "ok",
-      "asOf": "2026-08-12",
+      "asOf": "2026-08-13",
       "maxAgeDays": 5,
       "consumer": [
         "Data Lab"
       ],
       "producer": "scripts/update-etf-performance.py",
       "workflow": ".github/workflows/update-etf-performance.yml",
-      "sha256": "8b5ac569cc55f338475aa337455b6fcbc706506175ad77afc41c3f9b131ffe12",
+      "sha256": "1b8579f1589e4e5e45f558ec61de037205ec4f677bfcdae56a9c2f25ba523503",
       "recordCount": 100,
       "chartCoverage": 1.0,
       "statusCounts": {
@@ -178,14 +185,14 @@
       "path": "data/fixed-income-performance.json",
       "kind": "generated_fallback",
       "status": "ok",
-      "asOf": "2026-08-12",
+      "asOf": "2026-08-13",
       "maxAgeDays": 5,
       "consumer": [
         "Data Lab"
       ],
       "producer": "scripts/update-etf-performance.py",
       "workflow": ".github/workflows/update-etf-performance.yml",
-      "sha256": "20b4066bad85cc521c4b46b32f2f39aa70cbb94b3cad2735325fdbccf08a2d39",
+      "sha256": "c13a708c69a4b6ca58e9aef89fba671a5cfe0ff4affa18af0d9421f65cc1e36a",
       "recordCount": 11,
       "chartCoverage": 1.0,
       "statusCounts": {

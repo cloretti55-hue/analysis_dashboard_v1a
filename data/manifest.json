@@ -1,12 +1,13 @@
 {
   "schemaVersion": 1,
   "environment": "labs",
-  "generatedAt": "2026-08-14T21:48:05+00:00",
+  "generatedAt": "2026-08-17T11:51:31+00:00",
   "summary": {
     "datasetCount": 11,
     "statusCounts": {
       "manual": 2,
-      "ok": 9
+      "ok": 8,
+      "stale": 1
     },
     "blockingErrorCount": 0
   },
@@ -150,14 +151,14 @@
       "path": "data/etf-performance.json",
       "kind": "generated",
       "status": "ok",
-      "asOf": "2026-08-14",
+      "asOf": "2026-08-17",
       "maxAgeDays": 5,
       "consumer": [
         "Data Lab"
       ],
       "producer": "scripts/update-etf-performance.py",
       "workflow": ".github/workflows/update-etf-performance.yml",
-      "sha256": "b9632f552054afa265d90189549bd866b9c76f413c77aea83a337885cca362ae",
+      "sha256": "d19c79d2356b948b4f188727f29010b31a90f6620c2537892dd2ceafb90e9db2",
       "recordCount": 100,
       "chartCoverage": 1.0,
       "statusCounts": {
@@ -178,14 +179,14 @@
       "path": "data/fixed-income-performance.json",
       "kind": "generated_fallback",
       "status": "ok",
-      "asOf": "2026-08-14",
+      "asOf": "2026-08-17",
       "maxAgeDays": 5,
       "consumer": [
         "Data Lab"
       ],
       "producer": "scripts/update-etf-performance.py",
       "workflow": ".github/workflows/update-etf-performance.yml",
-      "sha256": "910f465182af73208604c52595ae78d876148ad86ec8a76243b6dc10bb6936ff",
+      "sha256": "89b315b59489427b683e6e1666b5fb1ef081925ff0ee843806c275abb997dc91",
       "recordCount": 11,
       "chartCoverage": 1.0,
       "statusCounts": {
@@ -205,7 +206,7 @@
       "id": "etf-geography",
       "path": "data/etf-geography.json",
       "kind": "generated",
-      "status": "ok",
+      "status": "stale",
       "asOf": "2026-06-30",
       "maxAgeDays": 45,
       "consumer": [
@@ -218,7 +219,13 @@
       "statusCounts": {
         "ok": 13
       },
-      "issues": []
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "stale_dataset",
+          "message": "Dataset asOf=2026-06-30 exceeds maxAgeDays=45"
+        }
+      ]
     }
   ]
 }

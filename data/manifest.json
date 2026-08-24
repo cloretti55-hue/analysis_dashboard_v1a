@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "environment": "labs",
-  "generatedAt": "2026-08-21T21:47:01+00:00",
+  "generatedAt": "2026-08-24T11:55:02+00:00",
   "summary": {
     "datasetCount": 11,
     "statusCounts": {
       "manual": 2,
-      "ok": 8,
-      "stale": 1
+      "ok": 7,
+      "stale": 2
     },
     "blockingErrorCount": 0
   },
@@ -78,7 +78,7 @@
       "id": "sp500-valuation",
       "path": "data/sp500-valuation.json",
       "kind": "generated",
-      "status": "ok",
+      "status": "stale",
       "asOf": "2026-08-07",
       "maxAgeDays": 14,
       "consumer": [
@@ -87,7 +87,13 @@
       "producer": "scripts/update-sp500-valuation.py",
       "workflow": ".github/workflows/update-sp500-valuation.yml",
       "sha256": "d429635af3d64a6655b9dd3121c941bdbf4cdcd2e7efe1eb7d15c4a3df47977e",
-      "issues": []
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "stale_dataset",
+          "message": "Dataset asOf=2026-08-07 exceeds maxAgeDays=14"
+        }
+      ]
     },
     {
       "id": "sp500-pe-history",
@@ -151,14 +157,14 @@
       "path": "data/etf-performance.json",
       "kind": "generated",
       "status": "ok",
-      "asOf": "2026-08-21",
+      "asOf": "2026-08-24",
       "maxAgeDays": 5,
       "consumer": [
         "Data Lab"
       ],
       "producer": "scripts/update-etf-performance.py",
       "workflow": ".github/workflows/update-etf-performance.yml",
-      "sha256": "ace90d5906c451e4fd1ec530120ab0088b3b2392693e42238ff123a7a545c281",
+      "sha256": "fb60243677901c55a1fc7170465bf783bec149dcd370364429e1b3b672444d98",
       "recordCount": 100,
       "chartCoverage": 1.0,
       "statusCounts": {
@@ -179,14 +185,14 @@
       "path": "data/fixed-income-performance.json",
       "kind": "generated_fallback",
       "status": "ok",
-      "asOf": "2026-08-21",
+      "asOf": "2026-08-24",
       "maxAgeDays": 5,
       "consumer": [
         "Data Lab"
       ],
       "producer": "scripts/update-etf-performance.py",
       "workflow": ".github/workflows/update-etf-performance.yml",
-      "sha256": "772258b3e4b452be1de9ad08a6af2b22bf3320e69f00cf071148de8e022c125b",
+      "sha256": "506b185cdf749eb992e0c32e0a5b3fe84fc8e247d83ad97a5e05df4c45e4d231",
       "recordCount": 11,
       "chartCoverage": 1.0,
       "statusCounts": {

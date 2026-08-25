@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "environment": "labs",
-  "generatedAt": "2026-08-25T12:02:45+00:00",
+  "generatedAt": "2026-08-25T12:19:05+00:00",
   "summary": {
     "datasetCount": 11,
     "statusCounts": {
@@ -34,14 +34,14 @@
       "path": "data/fed-policy.json",
       "kind": "generated",
       "status": "ok",
-      "asOf": "2026-08-20",
+      "asOf": "2026-08-21",
       "maxAgeDays": 5,
       "consumer": [
         "Yield Curves"
       ],
       "producer": "scripts/update-fed-policy.py",
       "workflow": ".github/workflows/update-fed-policy.yml",
-      "sha256": "75c8606b12266ab7c58d213ccd3a2cf8f6c151bdcf889fd7954f4d0da31cbc42",
+      "sha256": "af217ca90578ed4a92568e9a43d349f71cf9e2d0bf708fb4a9f7c43a017ee7e9",
       "issues": []
     },
     {

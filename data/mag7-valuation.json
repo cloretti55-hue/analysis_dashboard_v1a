@@ -6,7 +6,7 @@
   "methodology": "Forward P/E and trailing P/E for individual Magnificent 7 stocks. Group multiples are calculated as total market cap divided by implied aggregate earnings.",
   "group": {
     "marketCap": 23083116527616.0,
-    "trailingPE": 26.52,
+    "trailingPE": 26.58,
     "forwardPE": 22.62
   },
   "companies": [
@@ -67,11 +67,11 @@
       "company": "Alphabet",
       "price": 348.06,
       "marketCap": 4256751157248.0,
-      "trailingPE": 17.3,
+      "trailingPE": 17.46,
       "forwardPE": 23.5,
-      "trailingEPS": 20.12,
+      "trailingEPS": 19.94,
       "forwardEPS": 14.81,
-      "impliedTrailingEarnings": 246066302082.0,
+      "impliedTrailingEarnings": 243864904193.0,
       "impliedForwardEarnings": 181137699646.0,
       "weight": 18.44
     },

@@ -1,37 +1,37 @@
 {
   "version": 2,
   "asOf": "2026-06-30",
-  "generatedAt": "2026-08-25T12:59:42+00:00",
+  "generatedAt": "2026-08-26T21:02:51+00:00",
   "methodology": "Pesos por país atualizados mensalmente a partir das lâminas oficiais da Vanguard, iShares US e SPDR e das páginas oficiais estruturadas da iShares UCITS. Em falha temporária, o último dado válido é preservado e marcado como stale.",
   "instruments": {
     "EIMI": {
       "weights": [
         [
           "Taiwan",
-          26.63
+          26.82
         ],
         [
           "Coreia do Sul",
-          20.21
+          19.73
         ],
         [
           "China",
-          19.28
+          19.05
         ],
         [
           "Índia",
-          12.41
+          12.59
         ],
         [
           "Outros",
-          5.46
+          5.54
         ],
         [
-          "África do Sul",
-          3.32
+          "Brasil",
+          3.39
         ]
       ],
-      "asOf": "2026-08-21",
+      "asOf": "2026-08-25",
       "source": "iShares UCITS",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/264659/ishares-core-msci-em-imi-ucits-etf",
       "status": "ok",
@@ -74,30 +74,30 @@
       "weights": [
         [
           "Taiwan",
-          33.73
+          33.96
         ],
         [
           "Coreia do Sul",
-          26.62
+          25.81
         ],
         [
           "Índia",
-          14.1
+          14.32
         ],
         [
           "Outros",
-          5.43
+          5.55
         ],
         [
           "Alemanha",
-          4.86
+          4.93
         ],
         [
           "África do Sul",
-          4.18
+          4.19
         ]
       ],
-      "asOf": "2026-08-21",
+      "asOf": "2026-08-25",
       "source": "iShares UCITS",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/315592/ishares-msci-em-ex-china-ucits-etf",
       "status": "ok",
@@ -239,30 +239,30 @@
       "weights": [
         [
           "Reino Unido",
-          22.16
+          22.24
         ],
         [
           "França",
-          15.05
+          14.93
         ],
         [
           "Suíça",
-          14.37
+          14.36
         ],
         [
           "Alemanha",
-          13.74
+          13.76
         ],
         [
           "Holanda",
-          8.88
+          8.85
         ],
         [
           "Espanha",
-          6.17
+          6.16
         ]
       ],
-      "asOf": "2026-08-21",
+      "asOf": "2026-08-25",
       "source": "iShares UCITS",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251861/ishares-msci-europe-ucits-etf-inc-fund",
       "status": "ok",
@@ -272,30 +272,30 @@
       "weights": [
         [
           "EUA",
-          71.68
+          71.61
         ],
         [
           "Japão",
-          5.7
+          5.71
         ],
         [
           "Outros",
-          5.24
+          5.26
         ],
         [
           "Reino Unido",
-          3.52
+          3.54
         ],
         [
           "Canadá",
-          3.48
+          3.49
         ],
         [
           "França",
-          2.39
+          2.38
         ]
       ],
-      "asOf": "2026-08-21",
+      "asOf": "2026-08-25",
       "source": "iShares UCITS",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251882/ishares-core-msci-world-ucits-etf-acc-fund",
       "status": "ok",
@@ -305,30 +305,30 @@
       "weights": [
         [
           "EUA",
-          71.68
+          71.61
         ],
         [
           "Japão",
-          5.7
+          5.71
         ],
         [
           "Outros",
-          5.24
+          5.26
         ],
         [
           "Reino Unido",
-          3.52
+          3.54
         ],
         [
           "Canadá",
-          3.48
+          3.49
         ],
         [
           "França",
-          2.39
+          2.38
         ]
       ],
-      "asOf": "2026-08-21",
+      "asOf": "2026-08-25",
       "source": "iShares UCITS",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251882/ishares-core-msci-world-ucits-etf-acc-fund",
       "status": "ok",
